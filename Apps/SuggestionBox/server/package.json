@@ -1,0 +1,16 @@
+{
+  "name": "@suggestionbox/server",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "sqlite3": "^5.1.7",
+    "knex": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2"
+  },
+  "scripts": {
+    "build": "tsc",
+    "server": "rootsdk start devhost --project-folder=../"
+  }
+}

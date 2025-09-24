@@ -1,0 +1,6 @@
+{
+  "name": "@showdown/networking",
+  "scripts": {
+    "build": "rootsdk build proto"
+  }
+}

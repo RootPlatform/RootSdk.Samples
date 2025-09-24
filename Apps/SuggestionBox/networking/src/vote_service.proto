@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package suggestionbox;
+
+import "rootsdk/types.proto";
+import "core_types.proto";
+
+message VoteAddRequest {
+  uint32 suggestion_id = 1;
+}
+
+message VoteAddResponse {
+  // Intentionally empty, ready to add fields as needed in the future
+}
+
+message VoteAddedEvent {
+  Suggestion suggestion = 1;
+}
+
+service VoteService {
+  rpc Add(VoteAddRequest) returns (VoteAddResponse);
+
+  rpc BroadcastAdded(VoteAddedEvent) returns (rootsdk.Void);
+}

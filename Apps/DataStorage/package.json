@@ -1,0 +1,33 @@
+{
+  "name": "@tasks/app",
+  "author": "Root Communications, Inc.",
+  "description": "Tasks - Sample",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@rootsdk/client-app": "*",
+    "@rootsdk/server-app": "*",
+    "@tasks/gen-client": "file:./networking/gen/client",
+    "@tasks/gen-server": "file:./networking/gen/server",
+    "@tasks/gen-shared": "file:./networking/gen/shared"
+  },
+  "devDependencies": {
+    "@rootsdk/dev-tools": "*",
+    "typescript": "^5.8.2"
+  },
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "package": "rootsdk build package",
+    "clean": "node clean.js"
+  },
+  "workspaces": {
+    "packages": [
+      "./networking",
+      "./server",
+      "./client"
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "@CommunityLogStressTest/app",
+  "description": "CommunityLogStressTest",
+  "version": "1.0.0",
+  "private": true,
+  "engines": { "node": ">=22" },
+  "dependencies": {
+    "@rootsdk/client-app": "*",
+    "@rootsdk/server-app": "*",
+    "@CommunityLogStressTest/gen-client": "file:./networking/gen/client",
+    "@CommunityLogStressTest/gen-server": "file:./networking/gen/server",
+    "@CommunityLogStressTest/gen-shared": "file:./networking/gen/shared"
+  },
+  "devDependencies": {
+    "@rootsdk/dev-tools": "*",
+    "typescript": "^5.8.2",
+    "@types/node": "^22.10.2"
+  },
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "clean": "node clean.js"
+  },
+  "workspaces": {
+    "packages": [
+      "./networking",
+      "./server",
+      "./client"
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "source": ["./**/*.proto"],
+  "protoPaths": ["./src"],
+  "outputFolder": "./gen",
+  "scope": "@showdown",
+  "clientPackageName": "gen-client",
+  "serverPackageName": "gen-server",
+  "sharedPackageName": "gen-shared"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "xxxxxxxxxxxxxxxxxxxxxx",
+  "version": "1.0.0",
+  "package": {
+    "client": {
+      "deploy": "client/dist"
+    },
+    "server": {
+      "launch": "server/dist/main.js",
+      "deploy": [
+          "server/dist",
+          "networking/gen/server"
+      ],
+      "node_modules": [
+          "node_modules",
+          "server/node_modules"
+      ]
+    }
+  }
+}

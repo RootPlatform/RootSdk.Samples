@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+import "rootsdk/types.proto";
+
+message Tally {
+  int32 a = 1;
+  int32 b = 2;
+}
+
+//
+// Get
+//
+
+message VoteGetRequest {
+  // Intentionally empty, ready to add fields as needed in the future
+}
+
+message VoteGetResponse {
+  Tally tally = 1;
+}
+
+//
+// Add
+//
+
+message VoteAddRequest {
+  string choice = 1;
+}
+
+message VoteAddResponse {
+  Tally tally = 1;
+}
+
+message VoteAddedEvent {
+  Tally tally = 1;
+}
+
+service VoteService {
+  rpc Get(VoteGetRequest) returns (VoteGetResponse);
+  rpc Add(VoteAddRequest) returns (VoteAddResponse);
+
+  rpc BroadcastVoteAdded(VoteAddedEvent) returns (rootsdk.Void);
+}

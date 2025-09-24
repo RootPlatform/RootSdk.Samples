@@ -1,0 +1,32 @@
+{
+  "name": "@echo/app",
+  "author": "Root Communications, Inc.",
+  "description": "Echo App - Sample",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@rootsdk/client-app": "*",
+    "@rootsdk/server-app": "*",
+    "@echo/gen-client": "file:./networking/gen/client",
+    "@echo/gen-server": "file:./networking/gen/server",
+    "@echo/gen-shared": "file:./networking/gen/shared"
+  },
+  "devDependencies": {
+    "@rootsdk/dev-tools": "*",
+    "typescript": "^5.8.2"
+  },
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "clean": "node clean.js"
+  },
+  "workspaces": {
+    "packages": [
+      "./networking",
+      "./server",
+      "./client"
+    ]
+  }
+}

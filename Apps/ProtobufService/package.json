@@ -1,0 +1,32 @@
+{
+  "name": "@showdown/app",
+  "author": "Root Communications, Inc.",
+  "description": "Showdown App - Sample",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@rootsdk/client-app": "*",
+    "@rootsdk/server-app": "*",
+    "@showdown/gen-client": "file:./networking/gen/client",
+    "@showdown/gen-server": "file:./networking/gen/server",
+    "@showdown/gen-shared": "file:./networking/gen/shared"
+  },
+  "devDependencies": {
+    "@rootsdk/dev-tools": "*",
+    "typescript": "^5.8.2"
+  },
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "clean": "node clean.js"
+  },
+  "workspaces": {
+    "packages": [
+      "./networking",
+      "./server",
+      "./client"
+    ]
+  }
+}

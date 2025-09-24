@@ -1,0 +1,54 @@
+{
+  "id": "xxxxxxxxxxxxxxxxxxxxxx",
+  "version": "1.0.0",
+  "package": {
+    "server": {
+      "launch": "dist/main.js",
+      "deploy": [
+          "dist"
+      ],
+      "node_modules": [
+          "node_modules"
+      ]
+    }
+  },
+  "settings": {
+    "groups": [
+      {
+        "key": "messaging",
+        "title": "Participation",
+        "items": [
+          {
+            "key": "numberOfMessages",
+            "title": "Number of messages",
+            "description": "Number of messages members need to post to earn a role.",
+            "required": true,
+            "confirmation": "Save",
+            "number": {
+              "minValue": 1,
+              "maxValue": 100,
+              "step": 1,
+              "defaultValue": 10
+            }
+          }
+        ]
+      },
+      {
+        "key": "roles",
+        "title": "Role",
+        "items": [
+          {
+            "key": "assignedRole",
+            "title": "Role to be assigned",
+            "description": "Select the role that will be assigned to members.",
+            "required": true,
+            "confirmation": "Save",
+            "role": {
+              "multiSelect": false
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

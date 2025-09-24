@@ -1,0 +1,14 @@
+generator client {
+  provider = "prisma-client-js"    // You want a JavaScript/TypeScript client.
+  output   = "./dist/prismaClient" // Put the generated client in your dist folder so it'll be available at runtime.
+}
+
+// Table definition
+model TaskRecord {
+  id    Int    @id @default(autoincrement())
+  text  String
+}
+datasource db {
+  provider = "sqlite"
+  url = env("DATABASE_URL") // You'll set this environment variable to the Root database filename at runtime.
+}

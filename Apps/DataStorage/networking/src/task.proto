@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+import "rootsdk/types.proto";
+
+package tasks;
+
+message Task {
+  uint32 id   = 1;
+  string text = 2;
+}
+
+// Create
+
+message TaskCreateRequest {
+  string text = 1;
+}
+
+message TaskCreateResponse {
+  Task task = 1;
+}
+
+message TaskCreatedEvent {
+  Task task = 1;
+}
+
+// List
+
+message TaskListRequest {
+  // Intentionally empty, ready to add fields as needed in the future
+}
+
+message TaskListResponse {
+  repeated Task tasks = 1;
+}
+
+// Delete
+
+message TaskDeleteRequest {
+  uint32 id = 1;
+}
+
+message TaskDeleteResponse {
+  // Intentionally empty, ready to add fields as needed in the future
+}
+
+message TaskDeletedEvent {
+  uint32 id = 1;
+}
+
+// Service
+
+service TaskService {
+  rpc Create(TaskCreateRequest) returns (TaskCreateResponse);
+  rpc List  (TaskListRequest)   returns (TaskListResponse);
+  rpc Delete(TaskDeleteRequest) returns (TaskDeleteResponse);
+
+  rpc BroadcastCreated(TaskCreatedEvent) returns (rootsdk.Void);
+  rpc BroadcastDeleted(TaskDeletedEvent) returns (rootsdk.Void);
+}

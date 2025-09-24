@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package suggestionbox;
+
+import "rootsdk/types.proto";
+import "core_types.proto";
+
+// Create
+
+message SuggestionCreateRequest {
+  string text = 1;
+}
+
+message SuggestionCreateResponse {
+  Suggestion suggestion = 1;
+  bool success          = 2;
+}
+
+message SuggestionCreatedEvent {
+  Suggestion suggestion = 1;
+}
+
+// List
+
+message SuggestionListRequest {
+  // Intentionally empty, ready to add fields as needed in the future
+}
+
+message SuggestionListResponse {
+  repeated Suggestion suggestions = 1;
+}
+
+// Update
+
+message SuggestionUpdateRequest {
+  uint32 id   = 1;
+  string text = 2;
+}
+
+message SuggestionUpdateResponse {
+  // Intentionally empty, ready to add fields as needed in the future
+}
+
+message SuggestionUpdatedEvent {
+  Suggestion suggestion = 1;
+}
+
+// Delete
+
+message SuggestionDeleteRequest {
+  uint32 id = 1;
+}
+
+message SuggestionDeleteResponse {
+  // Intentionally empty, ready to add fields as needed in the future
+}
+
+message SuggestionDeletedEvent {
+  uint32 id = 1;
+}
+
+// Service
+
+service SuggestionService {
+  rpc Create(SuggestionCreateRequest) returns (SuggestionCreateResponse);
+  rpc List  (SuggestionListRequest)   returns (SuggestionListResponse);
+  rpc Update(SuggestionUpdateRequest) returns (SuggestionUpdateResponse);
+  rpc Delete(SuggestionDeleteRequest) returns (SuggestionDeleteResponse);
+
+  rpc BroadcastCreated(SuggestionCreatedEvent) returns (rootsdk.Void);
+  rpc BroadcastUpdated(SuggestionUpdatedEvent) returns (rootsdk.Void);
+  rpc BroadcastDeleted(SuggestionDeletedEvent) returns (rootsdk.Void);
+}

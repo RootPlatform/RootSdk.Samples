@@ -1,0 +1,6 @@
+{
+  "name": "@echo/networking",
+  "scripts": {
+    "build": "rootsdk build proto"
+  }
+}

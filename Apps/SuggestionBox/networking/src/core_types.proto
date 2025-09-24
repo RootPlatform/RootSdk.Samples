@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package suggestionbox;
+
+import "rootsdk/timestamp.proto";
+
+message Suggestion {
+  uint32 id                    = 1;
+  string author_id             = 2;
+  string text                  = 3;
+  repeated string voter_ids    = 4;
+  rootsdk.Timestamp created_at = 5;
+}

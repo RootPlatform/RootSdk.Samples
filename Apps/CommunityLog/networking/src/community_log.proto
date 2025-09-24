@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+enum Severity {
+  SEVERITY_UNKNOWN = 0;
+  SEVERITY_INFO    = 1;
+  SEVERITY_WARN    = 2;
+  SEVERITY_ERROR   = 3;
+  SEVERITY_FATAL   = 4;
+  SEVERITY_RANDOM  = 5;
+}
+
+message CreateCommunityLogMessageRequest {
+  string   message  = 1;
+  Severity severity = 2;
+  int32    count    = 3;
+}
+
+message CreateCommunityLogMessageResponse {
+}
+
+service CommunityLogService {
+  rpc Create(CreateCommunityLogMessageRequest) returns (CreateCommunityLogMessageResponse);
+}

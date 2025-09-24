@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "allowJs": false,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "rootDir": "./src"
+  },
+  "include": ["./src/**/*.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}

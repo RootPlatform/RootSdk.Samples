@@ -1,0 +1,65 @@
+.suggestion-list
+{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.suggestion-item
+{
+  margin-bottom: 1em;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+}
+
+.suggestion-text
+{
+  margin: 0;
+}
+
+.suggestion-date
+{
+  margin: 0.5em 0;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.suggestion-vote-container
+{
+  display: flex;
+  align-items: center;
+}
+
+.vote-button
+{
+  margin-right: 0.5em;
+  background: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 0.3em 0.8em;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.vote-button:disabled
+{
+  background: #B0BEC5;
+  color: #7f8c8d;
+  cursor: not-allowed;
+  border: 1px solid #BDC3C7;
+}
+
+.delete-button
+{
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 1.2rem;
+}
+
+.delete-button:hover
+{
+  color: darkred;
+}

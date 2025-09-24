@@ -1,0 +1,6 @@
+{
+  "name": "@CommunityLogStressTest/networking",
+  "scripts": {
+    "build": "rootsdk build proto"
+  }
+}

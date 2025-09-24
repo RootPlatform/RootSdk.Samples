@@ -1,0 +1,6 @@
+{
+  "name": "@tasks/networking",
+  "scripts": {
+    "build": "rootsdk build proto"
+  }
+}
