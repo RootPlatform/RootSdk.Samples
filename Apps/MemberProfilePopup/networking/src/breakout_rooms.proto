@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+import "rootsdk/types.proto";
+
+message BreakoutRoom
+{
+  repeated string userIds = 1;
+}
+
+message BreakoutRoomsGetRequest {
+  int32 rooms = 1;
+}
+
+message BreakoutRoomsGetResponse {
+  repeated BreakoutRoom rooms = 1;
+}
+
+message BreakoutRoomsGetEvent {
+  repeated BreakoutRoom rooms = 1;
+}
+
+service BreakoutRoomsService {
+  rpc Get(BreakoutRoomsGetRequest) returns (BreakoutRoomsGetResponse);
+
+  rpc BroadcastBreakoutRooms(BreakoutRoomsGetEvent) returns (rootsdk.Void);
+}

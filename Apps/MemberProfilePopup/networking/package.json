@@ -1,0 +1,6 @@
+{
+  "name": "@breakoutrooms/networking",
+  "scripts": {
+    "build": "rootsdk build proto"
+  }
+}
