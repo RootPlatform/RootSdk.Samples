@@ -1,0 +1,15 @@
+{
+  "name": "@echo/server",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2"
+  },
+  "scripts": {
+    "build": "tsc",
+    "server": "rootsdk start devhost --project-folder=../ --host=https://staging-api.qwxsy0g5zubtljm4d.com/"
+  }
+}

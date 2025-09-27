@@ -1,0 +1,548 @@
+/* ===================== Base Layout ===================== */
+.app-container {
+  padding: 24px;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+/* ===================== Tabs (app-level) ===================== */
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+
+  /* Theme-aware panel */
+  background: var(--rootsdk-background-secondary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 12px;
+  padding: 6px 8px;
+}
+
+.tab {
+  padding: 10px 12px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: var(--rootsdk-text-primary);
+  border-bottom: 2px solid transparent;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-size: 14px;
+}
+
+.tab:hover {
+  background: var(--rootsdk-background-tertiary);
+}
+
+.tab.active {
+  border-bottom-color: var(--rootsdk-brand-primary);
+  background: var(--rootsdk-background-primary);
+}
+
+/* ===================== Section Container & Unified Headings ===================== */
+.section-card {
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 14px;
+  background: var(--rootsdk-background-primary);
+  padding: 16px;
+}
+
+.section-title {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--rootsdk-text-primary);
+  border-bottom: 1px solid var(--rootsdk-border);
+  padding-bottom: 8px;
+  position: relative;
+}
+
+/* subtle brand accent under the heading */
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 48px;
+  height: 2px;
+  background: var(--rootsdk-brand-primary);
+}
+
+/* ===================== Theme & Event ===================== */
+.theme-section { margin-bottom: 16px; }
+
+.theme-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.theme-text { margin: 8px 0; }
+
+.theme-button {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--rootsdk-border);
+  background: var(--rootsdk-background-secondary);
+  color: var(--rootsdk-text-primary);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.theme-button:hover {
+  background: var(--rootsdk-background-tertiary);
+}
+
+/* Theme panel with Root colors */
+.theme-panel {
+  background: var(--rootsdk-background-secondary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 14px;
+  color: var(--rootsdk-text-primary);
+}
+
+.theme-panel .theme-text strong {
+  color: var(--rootsdk-brand-primary);
+}
+
+/* Root-colored action */
+.root-colored-btn {
+  background: var(--rootsdk-brand-primary);
+  color: var(--rootsdk-text-white);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.root-colored-btn:hover {
+  background: var(--rootsdk-brand-secondary);
+}
+
+/* ===================== Color Swatches ===================== */
+.swatches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.swatch-item {
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--rootsdk-background-primary);
+}
+
+.swatch-color {
+  height: 88px;
+  width: 100%;
+}
+
+.swatch-footer {
+  padding: 12px;
+  font-size: 12px;
+  border-top: 1px solid var(--rootsdk-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  background: var(--rootsdk-background-secondary);
+  color: var(--rootsdk-text-secondary);
+}
+
+.swatch-footer code {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  cursor: help;
+}
+
+.copy-btn {
+  font-size: 11px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  border: 1px solid var(--rootsdk-border);
+  background: var(--rootsdk-background-primary);
+  color: var(--rootsdk-text-primary);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.copy-btn.copied {
+  background: var(--rootsdk-highlight-light);
+  color: var(--rootsdk-text-primary);
+}
+
+/* Colors panel container */
+.colors-panel {
+  background: var(--rootsdk-background-secondary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 14px;
+  color: var(--rootsdk-text-primary);
+}
+
+.colors-panel .swatches-grid {
+  background: var(--rootsdk-background-primary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 12px;
+  padding: 12px;
+  gap: 12px;
+}
+
+/* ===================== Example UI (GuiExample) ===================== */
+.mock-wrap {
+  display: grid;
+  gap: 16px;
+  color: var(--rootsdk-text-primary);
+}
+
+/* Header / Navbar */
+.mock-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 10px;
+  background: var(--rootsdk-background-secondary);
+}
+
+.mock-brand {
+  font-weight: 700;
+  color: var(--rootsdk-brand-primary);
+}
+
+.mock-nav {
+  display: flex;
+  gap: 12px;
+}
+
+.mock-nav-link {
+  text-decoration: underline;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: var(--rootsdk-text-primary);
+  border: 1px solid transparent;
+}
+
+.mock-nav-link:hover {
+  background: var(--rootsdk-background-tertiary);
+  border-color: var(--rootsdk-border);
+}
+
+.mock-nav-link.active {
+  color: var(--rootsdk-text-white);
+  background: var(--rootsdk-brand-primary);
+  border-color: transparent;
+}
+
+/* ===================== Tabs (inside Example UI) ===================== */
+.mock-tabs {
+  display: flex;
+  gap: 8px;
+  background: var(--rootsdk-background-secondary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 10px;
+  padding: 6px 8px;
+}
+
+.mock-tab {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: var(--rootsdk-text-primary);
+  border-bottom: 2px solid transparent;
+  border-radius: 8px 8px 0 0;
+  cursor: default;
+}
+
+.mock-tab:hover {
+  background: var(--rootsdk-background-tertiary);
+}
+
+.mock-tab.active {
+  border-bottom-color: var(--rootsdk-brand-primary);
+  background: var(--rootsdk-background-primary);
+}
+
+/* Cards */
+.mock-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.mock-card {
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 14px;
+  background: var(--rootsdk-background-primary);
+  overflow: hidden;
+}
+
+.mock-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--rootsdk-border);
+  background: var(--rootsdk-background-secondary);
+  color: var(--rootsdk-text-primary);
+}
+
+.mock-card-head h4 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.mock-card-body {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+}
+
+/* Labels & helper */
+.mock-label {
+  font-size: 12px;
+  color: var(--rootsdk-text-secondary);
+}
+
+.mock-subtle {
+  font-size: 12px;
+  color: var(--rootsdk-text-tertiary);
+}
+
+/* Inputs */
+.mock-input,
+.mock-select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  border: 1px solid var(--rootsdk-border);
+  background: var(--rootsdk-input);
+  color: var(--rootsdk-text-primary);
+}
+
+.mock-select option,
+.mock-select optgroup {
+  background-color: var(--rootsdk-background-secondary);
+  color: var(--rootsdk-text-primary);
+}
+
+/* could not get this to work */
+.mock-select option:hover {
+  background-color: var(--rootsdk-warning);
+}
+
+.mock-input::placeholder {
+  color: var(--rootsdk-text-tertiary);
+}
+
+.mock-input:focus,
+.mock-select:focus {
+  border-color: var(--rootsdk-brand-primary);
+}
+
+/* Buttons */
+.mock-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.mock-btn {
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: default;
+}
+
+.mock-btn.primary {
+  background: var(--rootsdk-text-primary);
+  color: var(--rootsdk-background-tertiary);
+  border-color: transparent;
+}
+
+.mock-btn.secondary {
+  background: transparent;
+  color: var(--rootsdk-text-primary);
+  border-color: var(--rootsdk-text-tertiary);
+}
+
+.mock-btn.primary:hover,
+.mock-btn.secondary:hover {
+  opacity: 0.7;
+}
+
+.mock-btn.primary:active,
+.mock-btn.secondary:active {
+  opacity: 0.5;
+}
+
+.mock-btn.linkish {
+  background: transparent;
+  color: var(--rootsdk-link);
+  border-color: transparent;
+  text-decoration: underline;
+}
+
+.mock-btn.linkish:hover {
+  color: var(--rootsdk-text-primary);
+}
+
+/* Badges */
+.mock-badge {
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--rootsdk-border);
+  background: var(--rootsdk-background-tertiary);
+  color: var(--rootsdk-text-secondary);
+}
+
+.mock-badge.info {
+  background: var(--rootsdk-info);
+  color: black;
+  border-color: transparent;
+}
+
+.mock-badge.warning {
+  background: var(--rootsdk-warning);
+  color: var(--rootsdk-text-white);
+  border-color: transparent;
+}
+
+.mock-badge.error {
+  background: var(--rootsdk-error);
+  color: var(--rootsdk-text-white);
+  border-color: transparent;
+}
+
+/* Switch (visual only) */
+.mock-switch-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.mock-switch {
+  width: 38px;
+  height: 22px;
+  border-radius: 999px;
+  position: relative;
+  background: var(--rootsdk-brand-primary);
+}
+
+.mock-switch::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: var(--rootsdk-text-white);
+}
+
+.mock-switch.off {
+  background: var(--rootsdk-muted);
+}
+
+.mock-switch.off::after {
+  left: 18px; /* visually on the left */
+  transform: translate(-100%, -50%);
+}
+
+/* Alerts */
+.mock-alert {
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  background: var(--rootsdk-background-secondary);
+  color: var(--rootsdk-text-primary);
+}
+
+.mock-alert.error {
+  border-color: transparent;
+  background: var(--rootsdk-error);
+  color: var(--rootsdk-text-white);
+}
+
+.mock-alert.info {
+  border-color: transparent;
+  background: var(--rootsdk-info);
+  color: var(--rootsdk-text-tertiary);
+}
+
+.mock-alert.warning {
+  border-color: transparent;
+  background: var(--rootsdk-warning);
+  color: var(--rootsdk-text-primary);
+}
+
+/* ===================== Focus Visibility (A11y) ===================== */
+:where(.theme-button, .root-colored-btn, .tab, .mock-tab, .mock-btn, .copy-btn, .mock-nav-link):focus-visible {
+  outline: 2px solid var(--rootsdk-highlight-strong);
+  outline-offset: 2px;
+}
+
+/* Links inside example area */
+.mock-wrap a {
+  color: var(--rootsdk-link);
+  text-decoration: underline;
+}
+
+.mock-wrap a:hover {
+  color: var(--rootsdk-text-primary);
+}
+
+/* ===================== Global Tooltip Layer (JS-driven) ===================== */
+.tooltip-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  font-family: inherit;
+}
+
+.tooltip-bubble {
+  position: absolute;
+  max-width: 320px;
+  background: var(--rootsdk-background-secondary);
+  color: var(--rootsdk-text-primary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1.35;
+  white-space: pre-line;
+  transform: translate(-50%, 0);
+}
+
+.tooltip-arrow {
+  position: absolute;
+  width: 0; height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+}
+
+.tooltip-arrow.bottom {
+  border-top: 6px solid var(--rootsdk-background-secondary);
+  top: -6px; left: var(--arrow-left, 50%);
+  transform: translateX(-50%);
+}
+
+.tooltip-arrow.top {
+  border-bottom: 6px solid var(--rootsdk-background-secondary);
+  bottom: -6px; left: var(--arrow-left, 50%);
+  transform: translateX(-50%);
+}
