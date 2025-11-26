@@ -1,6 +1,7 @@
 import {
   rootServer,
   RootApiException,
+  ErrorCodeType,
   MessageType,
   ChannelMessageEvent,
   ChannelMessageCreatedEvent,
@@ -40,7 +41,10 @@ async function onMessage(evt: ChannelMessageCreatedEvent): Promise<void> {
     await rootServer.community.channelMessages.create(request);
   } catch (xcpt: unknown) {
     if (xcpt instanceof RootApiException) {
-      console.error("RootApiException:", xcpt.errorCode);
+      if (xcpt.errorCode === ErrorCodeType.NoPermissionToCreate)
+        console.error("RootApiException: missing CreateMessage permission");
+      else
+        console.error("RootApiException: " + xcpt.errorCode);
     } else if (xcpt instanceof Error) {
       console.error("Unexpected error:", xcpt.message);
     } else {
