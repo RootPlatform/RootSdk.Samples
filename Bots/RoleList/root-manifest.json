@@ -7,7 +7,7 @@
       "deploy": [
           "dist"
       ],
-      "node_modules": [
+      "nodeModules": [
           "node_modules"
       ]
     }

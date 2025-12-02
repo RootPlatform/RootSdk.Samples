@@ -11,7 +11,7 @@
           "server/dist",
           "networking/gen/server"
       ],
-      "node_modules": [
+      "nodeModules": [
           "node_modules",
           "server/node_modules"
       ]
