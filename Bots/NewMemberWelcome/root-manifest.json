@@ -11,5 +11,10 @@
           "node_modules"
       ]
     }
+  },
+  "permissions": {
+    "channel": {
+      "CreateMessage": true
+    }
   }
 }
