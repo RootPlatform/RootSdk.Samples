@@ -3,10 +3,8 @@ import { communityLogServiceClient } from "@CommunityLogStressTest/gen-client";
 import { CreateCommunityLogMessageRequest, Severity } from "@CommunityLogStressTest/gen-shared";
 
 const Log: React.FC = () => {
-  const [mode, setMode] = useState<"custom" | "random">("custom");
   const [message, setMessage] = useState("");
   const [severity, setSeverity] = useState<Severity>(Severity.INFO);
-  const [count, setCount] = useState(1);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -14,7 +12,6 @@ const Log: React.FC = () => {
     const request: CreateCommunityLogMessageRequest = {
       message: message,
       severity: severity,
-      count: count,
     };
 
     await communityLogServiceClient.create(request);
@@ -24,29 +21,6 @@ const Log: React.FC = () => {
     <form onSubmit={handleSubmit} style={{ maxWidth: 400, padding: 16 }}>
       <h2>Community Log Message</h2>
 
-      <fieldset style={{ marginBottom: 16 }}>
-        <legend><strong>Mode</strong></legend>
-        <label style={{ display: "block", marginBottom: 4 }}>
-          <input
-            type="radio"
-            value="custom"
-            checked={mode === "custom"}
-            onChange={() => setMode("custom")}
-          />
-          {" "}Custom
-        </label>
-        <label style={{ display: "block" }}>
-          <input
-            type="radio"
-            value="random"
-            checked={mode === "random"}
-            onChange={() => setMode("random")}
-          />
-          {" "}Random
-        </label>
-      </fieldset>
-
-      {mode === "custom" && (
         <>
           <div style={{ marginTop: 12 }}>
             <label>
@@ -73,28 +47,6 @@ const Log: React.FC = () => {
             </label>
           </div>
         </>
-      )}
-
-      {mode === "random" && (
-        <>
-          <div style={{ marginTop: 12 }}>
-            <label>
-              Number of random messages:<br />
-              <input
-                type="number"
-                value={count}
-                onChange={(e) => setCount(Number(e.target.value))}
-                min={1}
-                required
-              />
-            </label>
-          </div>
-
-          {/* Hidden values used when in random mode */}
-          <input type="hidden" value="Random message" readOnly />
-          <input type="hidden" value={Severity.RANDOM} readOnly />
-        </>
-      )}
 
       <button type="submit" style={{ marginTop: 16 }}>
         Send log

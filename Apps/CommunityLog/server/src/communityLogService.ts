@@ -12,14 +12,11 @@ import { CreateCommunityLogMessageRequest, CreateCommunityLogMessageResponse, Se
 
 export class CommunityLogService extends CommunityLogServiceBase {
   async create(request: CreateCommunityLogMessageRequest, client: Client): Promise<CreateCommunityLogMessageResponse> {
-    if (request.severity === Severity.RANDOM) {
-      await writeRandomLogs(request.count);
-    }
-    else {
-      await writeCustomLog(request.message, toCommunityAppLogType(request.severity));
-    }
+
+    await writeCommunityLog(request.message, toCommunityAppLogType(request.severity));
 
     const response: CreateCommunityLogMessageResponse = { };
+
     return response;
   }
 }
@@ -43,36 +40,6 @@ async function writeCommunityLog(message: string, severity: CommunityAppLogType)
       console.error("Unexpected error writing to community log:", error);
     }
   }
-}
-
-/**
- * Writes a specified number of community log messages with random severity levels.
- * @param count Number of messages to write
- */
-export async function writeRandomLogs(count: number): Promise<void> {
-  const severities: CommunityAppLogType[] = [
-    CommunityAppLogType.Info,
-    CommunityAppLogType.Warn,
-    CommunityAppLogType.Error,
-    CommunityAppLogType.Fatal,
-  ];
-
-  for (let i = 1; i <= count; i++) {
-    const now: Date = new Date();
-    const timestamp: string = now.toISOString();
-
-    const randomSeverity = severities[Math.floor(Math.random() * severities.length)];
-    await writeCommunityLog(timestamp + ` message ${i}`, randomSeverity);
-  }
-}
-
-/**
- * Writes a custom log message to the community log.
- * @param message The message text to log
- * @param severity The severity level of the message
- */
-export async function writeCustomLog(message: string, severity: CommunityAppLogType): Promise<void> {
-  await writeCommunityLog(message, severity);
 }
 
 /**

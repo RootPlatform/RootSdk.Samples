@@ -6,13 +6,11 @@ enum Severity {
   SEVERITY_WARN    = 2;
   SEVERITY_ERROR   = 3;
   SEVERITY_FATAL   = 4;
-  SEVERITY_RANDOM  = 5;
 }
 
 message CreateCommunityLogMessageRequest {
   string   message  = 1;
   Severity severity = 2;
-  int32    count    = 3;
 }
 
 message CreateCommunityLogMessageResponse {
