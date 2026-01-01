@@ -18,11 +18,11 @@ export class KnexTaskRepository {
   public async create(text: string): Promise<TaskModel> {
     const [id] = await knex(taskTableName).insert({ text });
 
-    return await knex(taskTableName).where({ id }).first();
+    return await knex(taskTableName).where({ id }).first() as TaskModel;
   }
 
   public async list(): Promise<TaskModel[]> {
-    return await knex(taskTableName).select();
+    return await knex(taskTableName).select() as TaskModel[];
   }
 
   public async delete(id: number): Promise<number> {

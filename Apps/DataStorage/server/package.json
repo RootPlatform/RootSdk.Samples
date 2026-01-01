@@ -13,6 +13,6 @@
   },
   "scripts": {
     "build": "prisma generate && tsc",
-    "server": "rootsdk start devhost --project-folder=../ --host=https://dev.api.rootapp.com/"
+    "server": "rootsdk start devhost --project-folder=../"
   }
 }

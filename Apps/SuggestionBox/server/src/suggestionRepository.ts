@@ -68,7 +68,7 @@ export class SuggestionRepository {
     const allVotes = await knex(voteTableName).select(
       "suggestion_id",
       "user_id"
-    );
+    ) as Array<{ suggestion_id: number; user_id: string }>;
 
     const votesMap: Record<number, string[]> = {};
 
@@ -81,7 +81,7 @@ export class SuggestionRepository {
     }
 
     // Fetch all suggestions, then augment them with the voter IDs for that suggestion
-    const allSuggestions = await knex(suggestionTableName).select();
+    const allSuggestions = await knex(suggestionTableName).select() as Array<Omit<SuggestionModel, 'voter_ids'>>;
 
     return allSuggestions.map((suggestion) => ({
       ...suggestion,
@@ -121,8 +121,8 @@ export class SuggestionRepository {
 
       return (await this.getById(suggestion_id)) ?? SuggestionBoxError.NOT_FOUND;
 
-    } catch (error) {
-      if (error.code === "SQLITE_CONSTRAINT") {
+    } catch (error: unknown) {
+      if ((error as { code?: string }).code === "SQLITE_CONSTRAINT") {
         return SuggestionBoxError.DUPLICATE_VOTE;
       }
 
