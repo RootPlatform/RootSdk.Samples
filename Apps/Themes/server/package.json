@@ -1,5 +1,5 @@
 {
-  "name": "@echo/server",
+  "name": "@themes/server",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -10,6 +10,6 @@
   },
   "scripts": {
     "build": "tsc",
-    "server": "rootsdk start devhost --project-folder=../ --host=https://staging-api.qwxsy0g5zubtljm4d.com/"
+    "server": "rootsdk start devhost --project-folder=../"
   }
 }

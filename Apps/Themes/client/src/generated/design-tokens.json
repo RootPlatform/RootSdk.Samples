@@ -1,0 +1,478 @@
+{
+  "generatedAt": "2026-01-22T22:03:01.285Z",
+  "colors": [
+    {
+      "name": "brandPrimary",
+      "cssVariable": "--rootsdk-brand-primary",
+      "description": "Primary brand color, used for primary buttons and key interactive elements",
+      "category": "brand"
+    },
+    {
+      "name": "brandSecondary",
+      "cssVariable": "--rootsdk-brand-secondary",
+      "description": "Secondary brand color, used for success states and accents",
+      "category": "brand"
+    },
+    {
+      "name": "brandTertiary",
+      "cssVariable": "--rootsdk-brand-tertiary",
+      "description": "Tertiary brand color, used for additional accents",
+      "category": "brand"
+    },
+    {
+      "name": "textPrimary",
+      "cssVariable": "--rootsdk-text-primary",
+      "description": "Primary text color for headings and body text",
+      "category": "text"
+    },
+    {
+      "name": "textSecondary",
+      "cssVariable": "--rootsdk-text-secondary",
+      "description": "Secondary text color for less prominent text",
+      "category": "text"
+    },
+    {
+      "name": "textTertiary",
+      "cssVariable": "--rootsdk-text-tertiary",
+      "description": "Tertiary text color for disabled or placeholder text",
+      "category": "text"
+    },
+    {
+      "name": "textWhite",
+      "cssVariable": "--rootsdk-text-white",
+      "description": "White text color, used on dark backgrounds regardless of theme",
+      "category": "text"
+    },
+    {
+      "name": "backgroundPrimary",
+      "cssVariable": "--rootsdk-background-primary",
+      "description": "Primary background color for main content areas",
+      "category": "background"
+    },
+    {
+      "name": "backgroundSecondary",
+      "cssVariable": "--rootsdk-background-secondary",
+      "description": "Secondary background color for cards and panels",
+      "category": "background"
+    },
+    {
+      "name": "backgroundTertiary",
+      "cssVariable": "--rootsdk-background-tertiary",
+      "description": "Tertiary background color for nested elements and dropdowns",
+      "category": "background"
+    },
+    {
+      "name": "surfacePrimary",
+      "cssVariable": "--rootsdk-surface-primary",
+      "description": "Primary surface color for elevated elements like modals",
+      "category": "surface"
+    },
+    {
+      "name": "surfaceSecondary",
+      "cssVariable": "--rootsdk-surface-secondary",
+      "description": "Secondary surface color for nested elevated elements",
+      "category": "surface"
+    },
+    {
+      "name": "surfaceTertiary",
+      "cssVariable": "--rootsdk-surface-tertiary",
+      "description": "Tertiary surface color for deeply nested elements",
+      "category": "surface"
+    },
+    {
+      "name": "input",
+      "cssVariable": "--rootsdk-input",
+      "description": "Background color for input fields",
+      "category": "interactive"
+    },
+    {
+      "name": "border",
+      "cssVariable": "--rootsdk-border",
+      "description": "Border color for dividers and element boundaries",
+      "category": "interactive"
+    },
+    {
+      "name": "link",
+      "cssVariable": "--rootsdk-link",
+      "description": "Color for links and clickable text",
+      "category": "interactive"
+    },
+    {
+      "name": "muted",
+      "cssVariable": "--rootsdk-muted",
+      "description": "Muted color for disabled states and subtle elements",
+      "category": "interactive"
+    },
+    {
+      "name": "highlightLight",
+      "cssVariable": "--rootsdk-highlight-light",
+      "description": "Light highlight for subtle hover states",
+      "category": "interactive"
+    },
+    {
+      "name": "highlightNormal",
+      "cssVariable": "--rootsdk-highlight-normal",
+      "description": "Normal highlight for standard hover states",
+      "category": "interactive"
+    },
+    {
+      "name": "highlightStrong",
+      "cssVariable": "--rootsdk-highlight-strong",
+      "description": "Strong highlight for active/pressed states",
+      "category": "interactive"
+    },
+    {
+      "name": "info",
+      "cssVariable": "--rootsdk-info",
+      "description": "Info/notice color for informational messages",
+      "category": "status"
+    },
+    {
+      "name": "warning",
+      "cssVariable": "--rootsdk-warning",
+      "description": "Warning color for caution states",
+      "category": "status"
+    },
+    {
+      "name": "error",
+      "cssVariable": "--rootsdk-error",
+      "description": "Error color for error states and destructive actions",
+      "category": "status"
+    },
+    {
+      "name": "selfMention",
+      "cssVariable": "--rootsdk-self-mention",
+      "description": "Background color when the current user is mentioned",
+      "category": "mention"
+    },
+    {
+      "name": "communityMention",
+      "cssVariable": "--rootsdk-community-mention",
+      "description": "Background color for @everyone or community mentions",
+      "category": "mention"
+    },
+    {
+      "name": "channelMention",
+      "cssVariable": "--rootsdk-channel-mention",
+      "description": "Background color for channel mentions",
+      "category": "mention"
+    },
+    {
+      "name": "backgroundBlur",
+      "cssVariable": "--rootsdk-background-blur",
+      "description": "Semi-transparent background for blur/overlay effects",
+      "category": "special"
+    }
+  ],
+  "spacing": [
+    {
+      "name": "none",
+      "value": "0",
+      "pixels": 0,
+      "description": "No spacing"
+    },
+    {
+      "name": "xs",
+      "value": "4px",
+      "pixels": 4,
+      "description": "Extra small spacing for tight layouts (gap between small icons)"
+    },
+    {
+      "name": "sm",
+      "value": "8px",
+      "pixels": 8,
+      "description": "Small spacing for compact elements (inner padding)"
+    },
+    {
+      "name": "md",
+      "value": "12px",
+      "pixels": 12,
+      "description": "Medium spacing for standard layouts (gap between elements)"
+    },
+    {
+      "name": "lg",
+      "value": "16px",
+      "pixels": 16,
+      "description": "Large spacing for comfortable layouts (panel padding)"
+    },
+    {
+      "name": "xl",
+      "value": "20px",
+      "pixels": 20,
+      "description": "Extra large spacing for section breaks (modal padding)"
+    },
+    {
+      "name": "2xl",
+      "value": "24px",
+      "pixels": 24,
+      "description": "Double extra large spacing (major section gaps)"
+    },
+    {
+      "name": "3xl",
+      "value": "32px",
+      "pixels": 32,
+      "description": "Triple extra large spacing"
+    },
+    {
+      "name": "4xl",
+      "value": "48px",
+      "pixels": 48,
+      "description": "Major section spacing"
+    }
+  ],
+  "borderRadius": [
+    {
+      "name": "none",
+      "value": "0",
+      "pixels": 0,
+      "tailwind": "rounded-none",
+      "description": "No border radius (sharp corners)"
+    },
+    {
+      "name": "sm",
+      "value": "6px",
+      "pixels": 6,
+      "tailwind": "rounded-md",
+      "description": "Small radius for icon buttons, close buttons"
+    },
+    {
+      "name": "md",
+      "value": "8px",
+      "pixels": 8,
+      "tailwind": "rounded-lg",
+      "description": "Medium radius for list items, dropdown options"
+    },
+    {
+      "name": "lg",
+      "value": "12px",
+      "pixels": 12,
+      "tailwind": "rounded-xl",
+      "description": "Large radius for inputs, panels, cards (most common)"
+    },
+    {
+      "name": "xl",
+      "value": "16px",
+      "pixels": 16,
+      "tailwind": "rounded-2xl",
+      "description": "Extra large radius for prominent containers"
+    },
+    {
+      "name": "full",
+      "value": "9999px",
+      "pixels": 9999,
+      "tailwind": "rounded-full",
+      "description": "Fully rounded for pills, buttons, avatars, switches"
+    }
+  ],
+  "borderWidth": [
+    {
+      "name": "none",
+      "value": "0",
+      "pixels": 0,
+      "description": "No border"
+    },
+    {
+      "name": "default",
+      "value": "1px",
+      "pixels": 1,
+      "description": "Standard border width for inputs, cards, dividers"
+    },
+    {
+      "name": "thick",
+      "value": "2px",
+      "pixels": 2,
+      "description": "Emphasized borders for focus states"
+    }
+  ],
+  "shadows": [
+    {
+      "name": "none",
+      "value": "none",
+      "description": "No shadow - DEFAULT for buttons, inputs, cards. Most UI elements in Root have no shadow."
+    },
+    {
+      "name": "sm",
+      "value": "0 2px 4px rgba(0, 0, 0, 0.1)",
+      "description": "Subtle shadow - rarely used, prefer none for most elements"
+    },
+    {
+      "name": "md",
+      "value": "0 4px 8px rgba(0, 0, 0, 0.15)",
+      "description": "Medium shadow - rarely used in Root patterns"
+    },
+    {
+      "name": "lg",
+      "value": "0 0 12px rgba(0, 0, 0, 0.5)",
+      "description": "Large shadow - ONLY for floating/elevated elements: modals, dropdowns, popovers, context menus"
+    }
+  ],
+  "typography": {
+    "fontFamily": {
+      "sans": "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+      "mono": "source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace"
+    },
+    "fontSizes": [
+      {
+        "name": "xs",
+        "value": "12px",
+        "pixels": 12,
+        "lineHeight": "16px",
+        "description": "Small text for badges, captions, metadata. Also 11px for very small badges."
+      },
+      {
+        "name": "sm",
+        "value": "13px",
+        "pixels": 13,
+        "lineHeight": "20px",
+        "description": "Form labels, status indicators, secondary info"
+      },
+      {
+        "name": "base",
+        "value": "14px",
+        "pixels": 14,
+        "lineHeight": "20px",
+        "description": "DEFAULT: Body text, buttons, inputs - the standard size for most content"
+      },
+      {
+        "name": "lg",
+        "value": "16px",
+        "pixels": 16,
+        "lineHeight": "24px",
+        "description": "Modal/dialog titles (lower range), emphasized body text"
+      },
+      {
+        "name": "xl",
+        "value": "20px",
+        "pixels": 20,
+        "lineHeight": "32px",
+        "description": "Modal/dialog titles (upper range), section headings"
+      },
+      {
+        "name": "2xl",
+        "value": "24px",
+        "pixels": 24,
+        "lineHeight": "32px",
+        "description": "Major headings, page titles"
+      }
+    ],
+    "fontWeights": [
+      {
+        "name": "normal",
+        "value": 400,
+        "description": "Normal weight for body text, placeholders"
+      },
+      {
+        "name": "medium",
+        "value": 450,
+        "description": "Medium weight for modal titles, status text"
+      },
+      {
+        "name": "semibold",
+        "value": 500,
+        "description": "Semibold for buttons, panel text"
+      },
+      {
+        "name": "bold",
+        "value": 600,
+        "description": "Bold for strong emphasis"
+      }
+    ]
+  },
+  "transitions": [
+    {
+      "name": "fast",
+      "value": "150ms",
+      "description": "Fast transitions for switches, micro-interactions"
+    },
+    {
+      "name": "normal",
+      "value": "200ms",
+      "description": "Standard transition speed for hover states"
+    },
+    {
+      "name": "slow",
+      "value": "300ms",
+      "description": "Slower transitions for larger elements"
+    }
+  ],
+  "componentPatterns": [
+    {
+      "name": "panel",
+      "description": "Standard panel/card container with rounded corners",
+      "css": ".panel {\n  background-color: var(--rootsdk-background-secondary);\n  border-radius: 12px;\n  padding: 16px;\n  min-height: 80px;\n}\n\n.panel-bordered {\n  border: 1px solid var(--rootsdk-border);\n}",
+      "tailwind": "// Panel: bg-background-secondary rounded-xl py-4 min-h-[80px]\n// With border: add border border-border"
+    },
+    {
+      "name": "input",
+      "description": "Text input field with focus state",
+      "css": ".input {\n  background-color: var(--rootsdk-input);\n  border: 1px solid var(--rootsdk-border);\n  border-radius: 12px;\n  padding: 14px 20px;\n  color: var(--rootsdk-text-primary);\n  font-size: 14px;\n  line-height: 20px;\n}\n\n.input::placeholder {\n  color: var(--rootsdk-text-tertiary);\n  font-weight: 400;\n}\n\n.input:focus {\n  outline: none;\n  border-color: var(--rootsdk-brand-primary);\n}",
+      "tailwind": "// Input: bg-input border border-border rounded-xl px-5 py-3.5 text-text-primary\n// Placeholder: placeholder-text-tertiary\n// Focus: focus:outline-none focus:border-brand-primary"
+    },
+    {
+      "name": "button-primary",
+      "description": "Primary action button (pill-shaped)",
+      "css": ".button-primary {\n  background-color: var(--rootsdk-text-primary);\n  color: var(--rootsdk-background-tertiary);\n  border: none;\n  border-radius: 9999px;\n  padding: 8px 24px;\n  font-size: 14px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: opacity 200ms;\n}\n\n.button-primary:hover {\n  opacity: 0.7;\n}\n\n.button-primary:active {\n  opacity: 0.5;\n  transform: scale(0.98);\n}\n\n.button-primary:disabled {\n  opacity: 0.5;\n  cursor: not-allowed;\n}",
+      "tailwind": "// Primary button: bg-text-primary text-background-tertiary rounded-full px-6 py-2 font-medium\n// Hover: hover:opacity-70\n// Active: active:opacity-50 active:scale-[0.98]\n// Disabled: disabled:opacity-50 disabled:cursor-not-allowed"
+    },
+    {
+      "name": "button-outline",
+      "description": "Secondary outlined button (pill-shaped)",
+      "css": ".button-outline {\n  background-color: transparent;\n  color: var(--rootsdk-text-primary);\n  border: 1px solid var(--rootsdk-text-tertiary);\n  border-radius: 9999px;\n  padding: 8px 24px;\n  font-size: 14px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: opacity 200ms;\n}\n\n.button-outline:hover {\n  opacity: 0.7;\n}\n\n.button-outline:active {\n  opacity: 0.5;\n  transform: scale(0.98);\n}\n\n.button-outline:disabled {\n  opacity: 0.5;\n  border-color: rgba(var(--rootsdk-text-tertiary), 0.4);\n  cursor: not-allowed;\n}",
+      "tailwind": "// Outline button: bg-transparent border border-text-tertiary rounded-full px-6 py-2 font-medium\n// Hover: hover:opacity-70\n// Active: active:opacity-50 active:scale-[0.98]\n// Disabled: disabled:opacity-50 disabled:border-text-tertiary/40"
+    },
+    {
+      "name": "button-danger",
+      "description": "Destructive action button",
+      "css": ".button-danger {\n  background-color: var(--rootsdk-error);\n  color: var(--rootsdk-text-white);\n  border: none;\n  border-radius: 9999px;\n  padding: 8px 24px;\n  font-size: 14px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: opacity 200ms;\n}\n\n.button-danger:hover {\n  opacity: 0.7;\n}\n\n.button-danger:active {\n  opacity: 0.5;\n  transform: scale(0.98);\n}",
+      "tailwind": "// Danger button: bg-error text-text-white rounded-full px-6 py-2 font-medium\n// Hover: hover:opacity-70\n// Active: active:opacity-50 active:scale-[0.98]"
+    },
+    {
+      "name": "modal",
+      "description": "Modal dialog container. CAUTION: Modals are not ideal for responsive design - prefer inline-edit pattern for edit flows. If you must use a modal, ensure it works at 320px width.",
+      "css": ".modal-overlay {\n  position: fixed;\n  inset: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: grid;\n  place-items: center;\n  padding: 16px; /* Ensure modal doesn't touch edges on small screens */\n}\n\n.modal-content {\n  background-color: var(--rootsdk-background-primary);\n  border: 1px solid var(--rootsdk-border);\n  border-radius: 8px;\n  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);\n  max-width: 688px;\n  width: 100%; /* Responsive: fill available width on small screens */\n  max-height: 90vh;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  gap: 20px;\n}\n\n.modal-header {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 12px 20px;\n  background-color: var(--rootsdk-background-primary);\n}\n\n.modal-title {\n  font-size: 20px;\n  font-weight: 450;\n  line-height: 32px;\n}\n\n.modal-body {\n  flex: 1;\n  padding: 0 24px;\n  overflow-y: auto;\n}",
+      "tailwind": "// CAUTION: Prefer inline-edit pattern for better responsiveness\n// Overlay: fixed inset-0 bg-black/50 grid place-items-center p-4\n// Content: bg-background-primary border border-border rounded-lg shadow-lg max-w-[688px] w-full max-h-[90vh]\n// Header: flex items-center justify-between py-3 px-5\n// Title: text-[20px] font-[450] leading-8\n// Body: flex-1 px-6 overflow-y-auto"
+    },
+    {
+      "name": "inline-edit",
+      "description": "RECOMMENDED: Inline edit pattern for responsive UIs. The item switches between view and edit modes in place, avoiding modals. Much better for small screens and mobile.",
+      "css": "/* Inline edit: item toggles between view and edit mode */\n.item-card {\n  background-color: var(--rootsdk-background-secondary);\n  border-radius: 8px;\n  padding: 12px 16px;\n}\n\n/* View mode: display content with edit button */\n.item-view {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  gap: 12px;\n}\n\n.item-content {\n  flex: 1;\n  min-width: 0; /* Allow text truncation */\n}\n\n.item-actions {\n  display: flex;\n  gap: 4px;\n  flex-shrink: 0;\n}\n\n/* Edit mode: inline form replaces view */\n.item-edit {\n  display: flex;\n  flex-direction: column;\n  gap: 12px;\n}\n\n.item-edit-input {\n  background-color: var(--rootsdk-input);\n  border: 1px solid var(--rootsdk-border);\n  border-radius: 8px;\n  padding: 10px 12px;\n  color: var(--rootsdk-text-primary);\n  font-size: 14px;\n  width: 100%;\n}\n\n.item-edit-input:focus {\n  outline: none;\n  border-color: var(--rootsdk-brand-primary);\n}\n\n.item-edit-actions {\n  display: flex;\n  gap: 8px;\n  justify-content: flex-end;\n}\n\n/* Usage: toggle isEditing state\n   {isEditing ? <ItemEdit /> : <ItemView />} */",
+      "tailwind": "// RECOMMENDED over modals for responsive design\n// Card: bg-background-secondary rounded-lg p-3\n// View mode: flex items-start justify-between gap-3\n// Content: flex-1 min-w-0 (for truncation)\n// Actions: flex gap-1 shrink-0\n// Edit mode: flex flex-col gap-3\n// Input: w-full bg-input border border-border rounded-lg px-3 py-2.5 focus:border-brand-primary\n// Edit actions: flex gap-2 justify-end"
+    },
+    {
+      "name": "dropdown",
+      "description": "Dropdown/select menu",
+      "css": ".dropdown {\n  position: absolute;\n  z-index: 100;\n  background-color: var(--rootsdk-background-tertiary);\n  border: 1px solid var(--rootsdk-border);\n  border-radius: 8px;\n  padding: 8px;\n  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n  max-height: 240px;\n  overflow-y: auto;\n}\n\n.dropdown-option {\n  padding: 10px 20px;\n  border-radius: 8px;\n  cursor: pointer;\n  transition: background-color 150ms;\n}\n\n.dropdown-option:hover,\n.dropdown-option.selected {\n  background-color: var(--rootsdk-highlight-normal);\n}",
+      "tailwind": "// Dropdown: absolute z-[100] bg-background-tertiary border border-border rounded-lg p-2 shadow-lg\n// Option: px-5 py-2.5 rounded-lg cursor-pointer hover:bg-highlight-normal"
+    },
+    {
+      "name": "native-select",
+      "description": "Native HTML select element styled to match Root design. Use this for simple dropdowns; use custom dropdown for advanced features.",
+      "css": "/* Native select - styled to match Root inputs */\n.select {\n  appearance: none;\n  background-color: var(--rootsdk-input);\n  background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2.5 4.5L6 8L9.5 4.5' stroke='%239CA3AF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\");\n  background-repeat: no-repeat;\n  background-position: right 12px center;\n  border: 1px solid var(--rootsdk-border);\n  border-radius: 12px;\n  padding: 14px 40px 14px 20px;\n  font-size: 14px;\n  line-height: 20px;\n  color: var(--rootsdk-text-primary);\n  cursor: pointer;\n  outline: none;\n}\n\n.select:focus {\n  border-color: var(--rootsdk-brand-primary);\n}\n\n.select option {\n  background-color: var(--rootsdk-background-tertiary);\n  color: var(--rootsdk-text-primary);\n  padding: 10px;\n}",
+      "tailwind": "// Native select: appearance-none bg-input border border-border rounded-xl py-3.5 pl-5 pr-10\n// Background chevron via inline style or custom CSS\n// Focus: focus:outline-none focus:border-brand-primary"
+    },
+    {
+      "name": "switch",
+      "description": "Toggle switch component",
+      "css": ".switch {\n  position: relative;\n  width: 44px;\n  height: 24px;\n  background-color: var(--rootsdk-highlight-normal);\n  border-radius: 9999px;\n  cursor: pointer;\n  transition: background-color 150ms;\n}\n\n.switch[data-state=\"checked\"] {\n  background-color: var(--rootsdk-brand-primary);\n}\n\n.switch-thumb {\n  display: block;\n  width: 20px;\n  height: 20px;\n  background-color: var(--rootsdk-text-primary);\n  border-radius: 50%;\n  transition: transform 150ms;\n  transform: translateX(2px);\n}\n\n.switch[data-state=\"checked\"] .switch-thumb {\n  transform: translateX(22px);\n}",
+      "tailwind": "// Switch track: w-[44px] h-[24px] bg-highlight-normal rounded-full cursor-pointer transition-colors\n// Checked: data-[state=checked]:bg-brand-primary\n// Thumb: w-[20px] h-[20px] bg-text-primary rounded-full transition-transform translate-x-[2px]\n// Thumb checked: data-[state=checked]:translate-x-[22px]"
+    },
+    {
+      "name": "icon-button",
+      "description": "Square icon button",
+      "css": ".icon-button {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 4px;\n  border-radius: 6px;\n  aspect-ratio: 1;\n  cursor: pointer;\n  color: var(--rootsdk-text-tertiary);\n  transition: background-color 150ms, color 150ms;\n}\n\n.icon-button:hover {\n  background-color: var(--rootsdk-highlight-strong);\n  color: var(--rootsdk-text-primary);\n}",
+      "tailwind": "// Icon button: p-1 rounded-md aspect-square flex items-center justify-center text-text-tertiary\n// Hover: hover:bg-highlight-strong hover:text-text-primary"
+    },
+    {
+      "name": "list-item",
+      "description": "Clickable list item with hover state",
+      "css": ".list-item {\n  padding: 8px 12px;\n  border-radius: 8px;\n  cursor: pointer;\n  transition: background-color 150ms;\n}\n\n.list-item:hover {\n  background-color: var(--rootsdk-highlight-normal);\n}",
+      "tailwind": "// List item: px-3 py-2 rounded-lg cursor-pointer hover:bg-highlight-normal"
+    },
+    {
+      "name": "focus-ring",
+      "description": "Focus state pattern - use box-shadow instead of outline for consistent appearance across browsers",
+      "css": "/* Focus ring pattern - apply to focusable elements */\n.focusable:focus {\n  outline: none;\n  box-shadow: 0 0 0 2px var(--rootsdk-brand-primary);\n}\n\n/* For elements that need focus within (like custom selects) */\n.focusable:focus-within {\n  outline: none;\n  box-shadow: 0 0 0 2px var(--rootsdk-brand-primary);\n}\n\n/* Focus-visible for keyboard-only focus */\n.focusable:focus-visible {\n  outline: none;\n  box-shadow: 0 0 0 2px var(--rootsdk-brand-primary);\n}",
+      "tailwind": "// Focus ring: focus:outline-none focus:ring-2 focus:ring-brand-primary\n// Or with shadow: focus:outline-none focus:shadow-[0_0_0_2px_var(--rootsdk-brand-primary)]\n// Focus-visible: focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
+    }
+  ]
+}

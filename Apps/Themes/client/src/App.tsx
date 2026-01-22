@@ -1,133 +1,94 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from 'react';
 import {
-  rootClient,
-  RootThemeMode,
-  RootClientThemeEvent,
-} from "@rootsdk/client-app";
-import "./App.css";
-import ColorSwatches from "./ColorSwatches";
-import GuiExample from "./GuiExample";
+  ThemeApiTab,
+  ColorsTab,
+  ComponentsTab,
+  IconsTab,
+  ReferenceTab,
+} from './tabs';
+import './App.css';
 
-const ROOT_PREDEFINED_COLORS = [
-  "--rootsdk-brand-primary",
-  "--rootsdk-brand-secondary",
-  "--rootsdk-brand-tertiary",
-  "--rootsdk-text-primary",
-  "--rootsdk-text-secondary",
-  "--rootsdk-text-tertiary",
-  "--rootsdk-text-white",
-  "--rootsdk-background-primary",
-  "--rootsdk-background-secondary",
-  "--rootsdk-background-tertiary",
-  "--rootsdk-input",
-  "--rootsdk-border",
-  "--rootsdk-highlight-light",
-  "--rootsdk-highlight-normal",
-  "--rootsdk-highlight-strong",
-  "--rootsdk-info",
-  "--rootsdk-warning",
-  "--rootsdk-error",
-  "--rootsdk-muted",
-  "--rootsdk-link",
+type TabKey = 'theme' | 'colors' | 'components' | 'icons' | 'reference';
+
+interface Tab {
+  key: TabKey;
+  label: string;
+  description: string;
+}
+
+const TABS: Tab[] = [
+  { key: 'theme', label: 'Theme API', description: 'Theme events and getTheme()' },
+  { key: 'colors', label: 'Colors', description: 'All CSS color variables' },
+  { key: 'components', label: 'Components', description: 'Live component examples' },
+  { key: 'icons', label: 'Icons', description: 'Icon library gallery' },
+  { key: 'reference', label: 'Reference', description: 'Quick reference & copy CSS' },
 ];
 
-type TabKey = "theme" | "colors" | "example";
-
 const App: React.FC = () => {
-  const [theme, setTheme] = useState<RootThemeMode | "unset">("unset");
-  const [themeEventResult, setThemeEventResult] = useState<RootThemeMode | "unset">("unset");
-  const [active, setActive] = useState<TabKey>("theme");
+  const [activeTab, setActiveTab] = useState<TabKey>('theme');
 
-  // --- Theme state & events ---
-  const getTheme = () => {
-    const current: RootThemeMode = rootClient.theme.getTheme();
-    setTheme(current);
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case 'theme':
+        return <ThemeApiTab />;
+      case 'colors':
+        return <ColorsTab />;
+      case 'components':
+        return <ComponentsTab />;
+      case 'icons':
+        return <IconsTab />;
+      case 'reference':
+        return <ReferenceTab />;
+      default:
+        return null;
+    }
   };
-
-  function onThemeUpdate(newMode: RootThemeMode): void {
-    setThemeEventResult(newMode);
-  }
-
-  useEffect(() => {
-    // subscribe to theme updates
-    rootClient.theme.on(RootClientThemeEvent.ThemeUpdate, onThemeUpdate);
-    return () => {
-      rootClient.theme.off(RootClientThemeEvent.ThemeUpdate, onThemeUpdate);
-    };
-  }, []);
-
-  // --- A11y-friendly tab button ---
-  const TabButton: React.FC<{
-    tab: TabKey;
-    label: string;
-  }> = ({ tab, label }) => (
-    <button
-      role="tab"
-      aria-selected={active === tab}
-      aria-controls={`panel-${tab}`}
-      id={`tab-${tab}`}
-      className={`tab ${active === tab ? "active" : ""}`}
-      onClick={() => setActive(tab)}
-      type="button"
-    >
-      {label}
-    </button>
-  );
 
   return (
     <div className="app-container">
-      {/* Tabs header */}
-      <div className="tabs" role="tablist" aria-label="Root SDK demo sections">
-        <TabButton tab="theme" label="Theme & Event" />
-        <TabButton tab="colors" label="Root SDK Colors" />
-        <TabButton tab="example" label="Example UI" />
-      </div>
-
-      {/* Panels */}
-      {active === "theme" && (
-        <section
-          id="panel-theme"
-          role="tabpanel"
-          aria-labelledby="tab-theme"
-          className="section-card theme-panel"
-        >
-          <h2 className="section-title">Theme & Event</h2>
-          <p className="theme-text">
-            Current theme based on event: <strong>{themeEventResult}</strong>
-          </p>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <p className="theme-text">
-              Current theme based on button click: <strong>{theme}</strong>
+      <header className="app-header">
+        <div className="header-content">
+          <div className="header-text">
+            <h1 className="app-title">Root Design System</h1>
+            <p className="app-subtitle">
+              Theme integration, colors, components, and icons for Root apps
             </p>
-            <button className="theme-button root-colored-btn" onClick={getTheme}>Get current theme</button>
           </div>
-        </section>
-      )}
+        </div>
+      </header>
 
-      {active === "colors" && (
-        <section
-          id="panel-colors"
-          role="tabpanel"
-          aria-labelledby="tab-colors"
-          className="section-card colors-panel"
-        >
-          <h2 className="section-title">Root SDK Colors</h2>
-          <ColorSwatches vars={ROOT_PREDEFINED_COLORS} />
-        </section>
-      )}
+      <nav className="tabs-nav" role="tablist" aria-label="Design system sections">
+        {TABS.map(tab => (
+          <button
+            key={tab.key}
+            role="tab"
+            aria-selected={activeTab === tab.key}
+            aria-controls={`panel-${tab.key}`}
+            id={`tab-${tab.key}`}
+            className={`tab-button ${activeTab === tab.key ? 'active' : ''}`}
+            onClick={() => setActiveTab(tab.key)}
+            title={tab.description}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </nav>
 
-      {active === "example" && (
-        <section
-          id="panel-example"
-          role="tabpanel"
-          aria-labelledby="tab-example"
-          className="section-card"
-        >
-          <h2 className="section-title">Example UI (non-functional)</h2>
-          <GuiExample />
-        </section>
-      )}
+      <main
+        className="tab-content"
+        role="tabpanel"
+        id={`panel-${activeTab}`}
+        aria-labelledby={`tab-${activeTab}`}
+      >
+        {renderTabContent()}
+      </main>
+
+      <footer className="app-footer">
+        <p>
+          Design tokens synced from <code>@rootplatform/ai-docs-single</code>.
+          Run <code>node scripts/sync-from-ai-docs.js</code> to update.
+        </p>
+      </footer>
     </div>
   );
 };

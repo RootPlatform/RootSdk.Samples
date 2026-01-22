@@ -17,6 +17,7 @@
   },
   "scripts": {
     "build": "npm run build --workspaces",
+    "sync-docs": "node scripts/sync-from-ai-docs.js",
     "clean": "node clean.js"
   },
   "workspaces": {
