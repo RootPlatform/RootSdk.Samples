@@ -1,0 +1,183 @@
+/* ============================================================
+   COLORS TAB STYLES
+   Displays all Root SDK CSS color variables organized by category
+   ============================================================ */
+
+.colors-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Intro section */
+.colors-intro {
+  background: var(--rootsdk-background-secondary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.colors-intro h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--rootsdk-text-primary);
+}
+
+.colors-intro p {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  color: var(--rootsdk-text-secondary);
+  line-height: 1.5;
+}
+
+.colors-intro strong {
+  color: var(--rootsdk-text-primary);
+}
+
+.usage-example {
+  background: var(--rootsdk-background-tertiary);
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+.usage-example code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, monospace;
+  font-size: 13px;
+  color: var(--rootsdk-text-primary);
+}
+
+/* Color category sections */
+.color-category {
+  background: var(--rootsdk-background-secondary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.category-header {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rootsdk-border);
+}
+
+.category-header h4 {
+  margin: 0 0 4px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--rootsdk-text-primary);
+}
+
+.category-header p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--rootsdk-text-secondary);
+}
+
+/* Color grid */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+/* Individual color swatch */
+.color-swatch {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--rootsdk-background-primary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 8px;
+  padding: 8px;
+  transition: border-color 150ms;
+}
+
+.color-swatch:hover {
+  border-color: var(--rootsdk-brand-primary);
+}
+
+.color-swatch-preview {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  border: 1px solid var(--rootsdk-border);
+}
+
+.color-swatch-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.color-swatch-variable {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  color: var(--rootsdk-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.color-swatch-name {
+  font-size: 11px;
+  color: var(--rootsdk-text-tertiary);
+}
+
+.color-swatch-copy {
+  padding: 4px 8px;
+  font-size: 11px;
+  background: var(--rootsdk-background-tertiary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 6px;
+  color: var(--rootsdk-text-secondary);
+  cursor: pointer;
+  transition: background 150ms;
+  flex-shrink: 0;
+}
+
+.color-swatch-copy:hover {
+  background: var(--rootsdk-highlight-normal);
+}
+
+.color-swatch-copy.copied {
+  background: var(--rootsdk-brand-primary);
+  color: var(--rootsdk-text-white);
+  border-color: transparent;
+}
+
+/* Tips section */
+.colors-tips {
+  background: var(--rootsdk-background-secondary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.colors-tips h4 {
+  margin: 0 0 12px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--rootsdk-text-primary);
+}
+
+.colors-tips ul {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.colors-tips li {
+  font-size: 13px;
+  color: var(--rootsdk-text-secondary);
+  line-height: 1.5;
+}
+
+.colors-tips li strong {
+  color: var(--rootsdk-text-primary);
+}

@@ -1,0 +1,315 @@
+/* ============================================================
+   REFERENCE TAB STYLES
+   Quick reference for design tokens and component patterns
+   ============================================================ */
+
+.reference-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.reference-section {
+  background: var(--rootsdk-background-secondary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.reference-section h3 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--rootsdk-text-primary);
+}
+
+.reference-section h4 {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--rootsdk-text-secondary);
+}
+
+.subsection {
+  margin-bottom: 16px;
+}
+
+.subsection:last-child {
+  margin-bottom: 0;
+}
+
+/* Section guidance text */
+.section-guidance {
+  margin: 0 0 16px 0;
+  padding: 12px 16px;
+  background: var(--rootsdk-background-tertiary);
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--rootsdk-text-secondary);
+}
+
+.section-guidance strong {
+  color: var(--rootsdk-text-primary);
+}
+
+.section-guidance code {
+  background: var(--rootsdk-background-secondary);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.subsection-guidance {
+  margin: 0 0 12px 0;
+  font-size: 12px;
+  color: var(--rootsdk-text-tertiary);
+  line-height: 1.4;
+}
+
+/* Copy All Section */
+.copy-all-section {
+  background: linear-gradient(135deg, var(--rootsdk-brand-primary) 0%, var(--rootsdk-brand-secondary) 100%);
+  border: none;
+}
+
+.copy-all-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.copy-all-header h3 {
+  margin: 0 0 4px 0;
+  color: var(--rootsdk-text-white);
+}
+
+.copy-all-header p {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.copy-all-button {
+  background: var(--rootsdk-text-white);
+  color: var(--rootsdk-brand-primary);
+  border: none;
+  border-radius: 9999px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 150ms, opacity 150ms;
+}
+
+.copy-all-button:hover {
+  transform: scale(1.02);
+}
+
+.copy-all-button:active {
+  transform: scale(0.98);
+}
+
+.copy-all-button.copied {
+  background: var(--rootsdk-background-primary);
+  color: var(--rootsdk-brand-primary);
+}
+
+/* Reference Table */
+.reference-table-wrapper {
+  overflow-x: auto;
+}
+
+.reference-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.reference-table th,
+.reference-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--rootsdk-border);
+}
+
+.reference-table th {
+  background: var(--rootsdk-background-tertiary);
+  font-weight: 600;
+  color: var(--rootsdk-text-primary);
+}
+
+.reference-table th:first-child {
+  border-radius: 8px 0 0 0;
+}
+
+.reference-table th:last-child {
+  border-radius: 0 8px 0 0;
+}
+
+.reference-table td {
+  color: var(--rootsdk-text-secondary);
+}
+
+.reference-table td:first-child {
+  color: var(--rootsdk-text-primary);
+  font-weight: 500;
+}
+
+.reference-table code {
+  background: var(--rootsdk-background-tertiary);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.reference-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Token Grid */
+.token-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.token-card {
+  background: var(--rootsdk-background-primary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.token-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--rootsdk-text-primary);
+}
+
+.token-value {
+  font-size: 12px;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, monospace;
+  color: var(--rootsdk-brand-primary);
+}
+
+.token-value-small {
+  font-size: 10px;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, monospace;
+  color: var(--rootsdk-brand-primary);
+  word-break: break-all;
+}
+
+.token-desc {
+  font-size: 11px;
+  color: var(--rootsdk-text-tertiary);
+  line-height: 1.4;
+}
+
+/* Preview boxes */
+.radius-preview {
+  width: 100%;
+  height: 40px;
+  background: var(--rootsdk-brand-primary);
+  margin-bottom: 8px;
+}
+
+.shadow-preview {
+  width: 100%;
+  height: 40px;
+  background: var(--rootsdk-background-secondary);
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.font-preview {
+  font-size: 24px;
+  color: var(--rootsdk-text-primary);
+  margin-bottom: 4px;
+}
+
+/* Component Generator Section */
+.generator-section {
+  background: var(--rootsdk-background-secondary);
+}
+
+.generator-desc {
+  margin: 0 0 16px 0;
+  font-size: 13px;
+  color: var(--rootsdk-text-secondary);
+}
+
+.generator-controls {
+  margin-bottom: 16px;
+}
+
+.generator-output {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.generator-code-block {
+  background: var(--rootsdk-background-primary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.generator-code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--rootsdk-background-tertiary);
+  border-bottom: 1px solid var(--rootsdk-border);
+}
+
+.generator-code-header span {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--rootsdk-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.generator-copy-btn {
+  padding: 4px 12px;
+  font-size: 12px;
+  background: var(--rootsdk-background-secondary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 6px;
+  color: var(--rootsdk-text-secondary);
+  cursor: pointer;
+  transition: background 150ms;
+}
+
+.generator-copy-btn:hover {
+  background: var(--rootsdk-highlight-normal);
+}
+
+.generator-copy-btn.copied {
+  background: var(--rootsdk-brand-primary);
+  color: var(--rootsdk-text-white);
+  border-color: transparent;
+}
+
+.generator-code {
+  margin: 0;
+  padding: 12px;
+  overflow-x: auto;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.generator-code code {
+  color: var(--rootsdk-text-primary);
+  white-space: pre;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, monospace;
+}

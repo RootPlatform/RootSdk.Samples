@@ -1,0 +1,693 @@
+/* ============================================================
+   ROOT DESIGN SYSTEM - COMPONENT REFERENCE
+   ============================================================
+   This CSS demonstrates Root's styling conventions.
+   Copy these patterns for your own components.
+
+   Key conventions:
+   - Border radius: 12px for panels/inputs, 9999px for pills/buttons
+   - Border: 1px solid var(--rootsdk-border)
+   - Transitions: 150ms for fast (switches), 200ms for normal (hover)
+   - Spacing: 8px small, 12px medium, 16px large, 24px extra
+   ============================================================ */
+
+.components-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ----------------------------------------------------------
+   SECTION CONTAINER
+   Each component demo is wrapped in a section card
+   ---------------------------------------------------------- */
+.component-section {
+  background: var(--rootsdk-background-secondary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.component-section h3 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--rootsdk-text-primary);
+}
+
+.section-desc {
+  margin: 0 0 16px 0;
+  font-size: 13px;
+  color: var(--rootsdk-text-secondary);
+  line-height: 1.5;
+}
+
+/* ----------------------------------------------------------
+   DEMO ROWS & LAYOUTS
+   Flexible containers for component demos
+   ---------------------------------------------------------- */
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.demo-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.demo-alerts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.demo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+  background: var(--rootsdk-background-primary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+/* ----------------------------------------------------------
+   BUTTONS
+   Root uses pill-shaped buttons (border-radius: 9999px)
+
+   Three main variants:
+   1. Primary: Filled with text-primary bg (adaptive to theme)
+   2. Outline: Transparent with border
+   3. Danger: Filled with error color
+   ---------------------------------------------------------- */
+
+/* Primary Button - Main call-to-action
+   Uses text-primary for background, background-tertiary for text
+   This creates a "filled" look that works in both themes */
+.demo-button-primary {
+  /* Colors: filled style */
+  background-color: var(--rootsdk-text-primary);
+  color: var(--rootsdk-background-tertiary);
+
+  /* Shape: pill-shaped (fully rounded) */
+  border: none;
+  border-radius: 9999px;
+
+  /* Sizing */
+  padding: 8px 24px;
+  font-size: 14px;
+  font-weight: 500;
+
+  /* Interaction */
+  cursor: pointer;
+  transition: opacity 200ms;
+}
+
+.demo-button-primary:hover {
+  opacity: 0.7;
+}
+
+.demo-button-primary:active {
+  opacity: 0.5;
+  transform: scale(0.98);
+}
+
+.demo-button-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Outline Button - Secondary action
+   Transparent bg with border, text-primary text */
+.demo-button-outline {
+  background-color: transparent;
+  color: var(--rootsdk-text-primary);
+  border: 1px solid var(--rootsdk-text-tertiary);
+  border-radius: 9999px;
+  padding: 8px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 200ms;
+}
+
+.demo-button-outline:hover {
+  opacity: 0.7;
+}
+
+/* Danger Button - Destructive actions
+   Uses error color for background */
+.demo-button-danger {
+  background-color: var(--rootsdk-error);
+  color: var(--rootsdk-text-white);
+  border: none;
+  border-radius: 9999px;
+  padding: 8px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 200ms;
+}
+
+.demo-button-danger:hover {
+  opacity: 0.7;
+}
+
+/* ----------------------------------------------------------
+   INPUTS
+   Text inputs, selects, and textareas
+
+   Key styles:
+   - Background: var(--rootsdk-input)
+   - Border: 1px solid var(--rootsdk-border)
+   - Border radius: 12px (most common for inputs)
+   - Focus: border-color changes to brand-primary
+   ---------------------------------------------------------- */
+
+.demo-input,
+.demo-select,
+.demo-textarea {
+  /* Background uses the special input color */
+  background-color: var(--rootsdk-input);
+
+  /* Standard border styling */
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 12px;
+
+  /* Generous padding for comfortable touch targets */
+  padding: 14px 20px;
+
+  /* Text styling */
+  color: var(--rootsdk-text-primary);
+  font-size: 14px;
+  line-height: 20px;
+  font-family: inherit;
+
+  /* Full width by default */
+  width: 100%;
+  box-sizing: border-box;
+
+  /* Remove default outline */
+  outline: none;
+}
+
+/* Placeholder text uses tertiary for subtle appearance */
+.demo-input::placeholder,
+.demo-textarea::placeholder {
+  color: var(--rootsdk-text-tertiary);
+}
+
+/* Focus state: highlight with brand color */
+.demo-input:focus,
+.demo-select:focus,
+.demo-textarea:focus {
+  border-color: var(--rootsdk-brand-primary);
+}
+
+/* Textarea specific */
+.demo-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* ----------------------------------------------------------
+   PANELS & CARDS
+   Container components for grouping content
+
+   Key styles:
+   - Background: var(--rootsdk-background-secondary)
+   - Border: 1px solid var(--rootsdk-border)
+   - Border radius: 12px
+   ---------------------------------------------------------- */
+
+.demo-panel {
+  background: var(--rootsdk-background-primary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.demo-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--rootsdk-border);
+}
+
+.demo-panel-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--rootsdk-text-primary);
+}
+
+.demo-panel-content {
+  margin: 0;
+  font-size: 14px;
+  color: var(--rootsdk-text-secondary);
+}
+
+/* ----------------------------------------------------------
+   SWITCH / TOGGLE
+   Toggle switch component
+
+   Key styles:
+   - Track: 44x24px, rounded-full
+   - Thumb: 20x20px circle
+   - Off state: highlight-normal background
+   - On state: brand-primary background
+   ---------------------------------------------------------- */
+
+.demo-switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+
+  /* Off state background */
+  background-color: var(--rootsdk-highlight-normal);
+  border-radius: 9999px;
+
+  cursor: pointer;
+  transition: background-color 150ms;
+  flex-shrink: 0;
+}
+
+/* On state - uses brand primary */
+.demo-switch[data-checked="true"] {
+  background-color: var(--rootsdk-brand-primary);
+}
+
+.demo-switch-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+
+  /* Thumb uses text-primary for theme-adaptive color */
+  background-color: var(--rootsdk-text-primary);
+  border-radius: 50%;
+
+  transition: transform 150ms;
+}
+
+/* Move thumb to right when checked */
+.demo-switch[data-checked="true"] .demo-switch-thumb {
+  transform: translateX(20px);
+}
+
+.demo-switch-label {
+  font-size: 14px;
+  color: var(--rootsdk-text-secondary);
+}
+
+/* ----------------------------------------------------------
+   BADGES
+   Small status indicators
+
+   Key styles:
+   - Pill-shaped (border-radius: 9999px)
+   - Small padding (4px 8px)
+   - Small font (11px)
+   ---------------------------------------------------------- */
+
+.demo-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 9999px;
+
+  /* Default styling */
+  border: 1px solid var(--rootsdk-border);
+  background: var(--rootsdk-background-tertiary);
+  color: var(--rootsdk-text-secondary);
+}
+
+/* Status variants */
+.demo-badge-info {
+  background: var(--rootsdk-info);
+  color: #1F2937; /* Dark text for readability on yellow/lime */
+  border-color: transparent;
+}
+
+.demo-badge-warning {
+  background: var(--rootsdk-warning);
+  color: #1F2937; /* Dark text for readability on yellow */
+  border-color: transparent;
+}
+
+.demo-badge-error {
+  background: var(--rootsdk-error);
+  color: var(--rootsdk-text-white);
+  border-color: transparent;
+}
+
+/* ----------------------------------------------------------
+   ALERTS
+   Notification/message banners
+
+   Key styles:
+   - Border radius: 10px
+   - Padding: 12px 16px
+   - Status colors for variants
+   ---------------------------------------------------------- */
+
+.demo-alert {
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+
+  /* Default styling */
+  border: 1px solid var(--rootsdk-border);
+  background: var(--rootsdk-background-secondary);
+  color: var(--rootsdk-text-primary);
+}
+
+.demo-alert-info {
+  background: var(--rootsdk-info);
+  color: #1F2937; /* Dark text for readability on yellow/lime */
+  border-color: transparent;
+}
+
+.demo-alert-warning {
+  background: var(--rootsdk-warning);
+  color: #1F2937; /* Dark text for readability on yellow */
+  border-color: transparent;
+}
+
+.demo-alert-error {
+  background: var(--rootsdk-error);
+  color: var(--rootsdk-text-white);
+  border-color: transparent;
+}
+
+/* ----------------------------------------------------------
+   LIST ITEMS
+   Interactive list items with hover/selected states
+
+   Key styles:
+   - Border radius: 8px
+   - Hover: highlight-normal background
+   - Selected: highlight-strong background
+   ---------------------------------------------------------- */
+
+.demo-list-item {
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 150ms;
+  color: var(--rootsdk-text-primary);
+  font-size: 14px;
+}
+
+.demo-list-item:hover {
+  background-color: var(--rootsdk-highlight-normal);
+}
+
+.demo-list-item.selected {
+  background-color: var(--rootsdk-highlight-strong);
+}
+
+/* ----------------------------------------------------------
+   ICON BUTTONS
+   Square buttons for icons
+
+   Key styles:
+   - Border radius: 6px (smaller than other elements)
+   - Square aspect ratio
+   - Icon color: text-tertiary -> text-primary on hover
+   - Background: transparent -> highlight-strong on hover
+   ---------------------------------------------------------- */
+
+.demo-icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  border-radius: 6px;
+  aspect-ratio: 1;
+
+  /* Start with subtle styling */
+  cursor: pointer;
+  color: var(--rootsdk-text-tertiary);
+  background: transparent;
+  border: none;
+
+  transition: background-color 150ms, color 150ms;
+}
+
+.demo-icon-button:hover {
+  background-color: var(--rootsdk-highlight-strong);
+  color: var(--rootsdk-text-primary);
+}
+
+.demo-icon-button svg {
+  display: block;
+}
+
+/* ----------------------------------------------------------
+   CODE BLOCK STYLES
+   Styling for the CodeBlock component
+   ---------------------------------------------------------- */
+
+.code-block {
+  background: var(--rootsdk-background-tertiary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.code-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--rootsdk-background-secondary);
+  border-bottom: 1px solid var(--rootsdk-border);
+}
+
+.code-block-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--rootsdk-text-secondary);
+}
+
+.code-block-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.code-block-toggle {
+  padding: 2px 8px;
+  font-size: 11px;
+  background: transparent;
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 4px;
+  color: var(--rootsdk-text-secondary);
+  cursor: pointer;
+}
+
+.code-block-toggle:hover {
+  background: var(--rootsdk-highlight-normal);
+}
+
+.code-block-content {
+  margin: 0;
+  padding: 12px;
+  overflow-x: auto;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.code-block-content code {
+  color: var(--rootsdk-text-primary);
+  white-space: pre;
+}
+
+/* Syntax highlighting - uses Root brand colors */
+.syntax-comment {
+  color: var(--rootsdk-text-tertiary);
+  font-style: italic;
+}
+
+.syntax-string {
+  color: var(--rootsdk-brand-secondary);
+}
+
+.syntax-keyword {
+  color: var(--rootsdk-brand-primary);
+}
+
+.syntax-property {
+  color: var(--rootsdk-info);
+}
+
+.syntax-value {
+  color: var(--rootsdk-brand-tertiary);
+}
+
+.syntax-selector {
+  color: var(--rootsdk-brand-primary);
+  font-weight: 500;
+}
+
+.syntax-punctuation {
+  color: var(--rootsdk-text-secondary);
+}
+
+/* Copy button */
+.copy-button {
+  padding: 2px 8px;
+  font-size: 11px;
+  background: var(--rootsdk-background-tertiary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 4px;
+  color: var(--rootsdk-text-secondary);
+  cursor: pointer;
+  transition: background 150ms;
+}
+
+.copy-button:hover {
+  background: var(--rootsdk-highlight-normal);
+}
+
+.copy-button.copied {
+  background: var(--rootsdk-brand-primary);
+  color: var(--rootsdk-text-white);
+  border-color: transparent;
+}
+
+/* ----------------------------------------------------------
+   SLIDER
+   Horizontal range slider with fill, thumb, and value label
+   ---------------------------------------------------------- */
+
+.demo-slider-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.demo-slider-track {
+  position: relative;
+  flex: 1;
+  height: 6px;
+  background: var(--rootsdk-highlight-strong);
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.demo-slider-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--rootsdk-brand-primary);
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+.demo-slider-thumb {
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  background: var(--rootsdk-text-primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  transition: transform 150ms;
+  pointer-events: none;
+}
+
+.demo-slider-track:hover .demo-slider-thumb {
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+.demo-slider-value {
+  min-width: 44px;
+  text-align: right;
+  font-size: 14px;
+  color: var(--rootsdk-text-secondary);
+}
+
+/* ----------------------------------------------------------
+   RADIO BUTTONS
+   Bordered container style with squircle indicator
+   ---------------------------------------------------------- */
+
+.demo-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.demo-radio-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 150ms, background-color 150ms;
+}
+
+.demo-radio-option:hover {
+  background: var(--rootsdk-highlight-light);
+}
+
+.demo-radio-option.selected {
+  border-color: var(--rootsdk-brand-primary);
+  background: var(--rootsdk-highlight-light);
+}
+
+.demo-radio-squircle {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--rootsdk-text-tertiary);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 150ms;
+}
+
+.demo-radio-option.selected .demo-radio-squircle {
+  border-color: var(--rootsdk-brand-primary);
+}
+
+.demo-radio-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--rootsdk-brand-primary);
+  border-radius: 3px;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 150ms, transform 150ms;
+}
+
+.demo-radio-option.selected .demo-radio-dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.demo-radio-label {
+  font-size: 14px;
+  color: var(--rootsdk-text-primary);
+}

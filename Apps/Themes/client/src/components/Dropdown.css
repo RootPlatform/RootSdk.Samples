@@ -1,0 +1,92 @@
+/* ============================================================
+   DROPDOWN COMPONENT
+   Custom dropdown matching Root design patterns
+   ============================================================ */
+
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Trigger button (the select-like element) */
+.dropdown-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 200px;
+  background-color: var(--rootsdk-input);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--rootsdk-text-primary);
+  cursor: pointer;
+  outline: none;
+  text-align: left;
+}
+
+.dropdown-trigger:hover {
+  border-color: var(--rootsdk-text-tertiary);
+}
+
+.dropdown-trigger:focus {
+  border-color: var(--rootsdk-brand-primary);
+}
+
+.dropdown-trigger.open {
+  border-color: var(--rootsdk-brand-primary);
+}
+
+.dropdown-trigger-text {
+  flex: 1;
+}
+
+.dropdown-trigger-chevron {
+  display: flex;
+  align-items: center;
+  color: var(--rootsdk-text-tertiary);
+  transition: transform 150ms;
+}
+
+.dropdown-trigger.open .dropdown-trigger-chevron {
+  transform: rotate(180deg);
+}
+
+/* Dropdown menu panel */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: var(--rootsdk-background-tertiary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 8px;
+  padding: 4px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Dropdown options */
+.dropdown-option {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--rootsdk-text-primary);
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 150ms;
+}
+
+.dropdown-option:hover {
+  background-color: var(--rootsdk-highlight-normal);
+}
+
+.dropdown-option.selected {
+  background-color: var(--rootsdk-highlight-strong);
+}

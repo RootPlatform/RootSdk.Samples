@@ -1,0 +1,274 @@
+/* ============================================================
+   ROOT THEMES SAMPLE APP - MAIN STYLES
+   ============================================================
+   This sample demonstrates Root's design system including:
+   - Theme API (getTheme, theme events)
+   - CSS color variables
+   - Component styling patterns
+   - Icon library
+
+   For component-specific styles, see:
+   - tabs/ComponentsTab.css (heavily documented reference)
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   FALLBACK THEME VARIABLES
+   These provide defaults when not running inside Root.
+   In production, Root overrides these based on user theme.
+   ---------------------------------------------------------- */
+:root {
+  /* Brand Colors */
+  --rootsdk-brand-primary: #7C3AED;
+  --rootsdk-brand-secondary: #10B981;
+  --rootsdk-brand-tertiary: #F59E0B;
+
+  /* Text Colors - Light Theme */
+  --rootsdk-text-primary: #1F2937;
+  --rootsdk-text-secondary: #6B7280;
+  --rootsdk-text-tertiary: #9CA3AF;
+  --rootsdk-text-white: #FFFFFF;
+
+  /* Background Colors - Light Theme */
+  --rootsdk-background-primary: #FFFFFF;
+  --rootsdk-background-secondary: #F9FAFB;
+  --rootsdk-background-tertiary: #F3F4F6;
+  --rootsdk-background-blur: rgba(255, 255, 255, 0.8);
+
+  /* Surface Colors */
+  --rootsdk-surface-primary: #FFFFFF;
+  --rootsdk-surface-secondary: #F9FAFB;
+  --rootsdk-surface-tertiary: #F3F4F6;
+
+  /* Interactive Colors */
+  --rootsdk-input: #F9FAFB;
+  --rootsdk-border: #E5E7EB;
+  --rootsdk-link: #7C3AED;
+  --rootsdk-muted: #D1D5DB;
+  --rootsdk-highlight-light: rgba(0, 0, 0, 0.03);
+  --rootsdk-highlight-normal: rgba(0, 0, 0, 0.06);
+  --rootsdk-highlight-strong: rgba(0, 0, 0, 0.1);
+
+  /* Status Colors */
+  --rootsdk-info: #3B82F6;
+  --rootsdk-warning: #F59E0B;
+  --rootsdk-error: #EF4444;
+
+  /* Mention Colors */
+  --rootsdk-self-mention: rgba(124, 58, 237, 0.15);
+  --rootsdk-community-mention: rgba(239, 68, 68, 0.15);
+  --rootsdk-channel-mention: rgba(59, 130, 246, 0.15);
+}
+
+/* Dark theme fallback - applies when prefers-color-scheme is dark */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    /* Text Colors - Dark Theme */
+    --rootsdk-text-primary: #F9FAFB;
+    --rootsdk-text-secondary: #9CA3AF;
+    --rootsdk-text-tertiary: #6B7280;
+
+    /* Background Colors - Dark Theme */
+    --rootsdk-background-primary: #111827;
+    --rootsdk-background-secondary: #1F2937;
+    --rootsdk-background-tertiary: #374151;
+    --rootsdk-background-blur: rgba(17, 24, 39, 0.8);
+
+    /* Surface Colors - Dark Theme */
+    --rootsdk-surface-primary: #1F2937;
+    --rootsdk-surface-secondary: #374151;
+    --rootsdk-surface-tertiary: #4B5563;
+
+    /* Interactive Colors - Dark Theme */
+    --rootsdk-input: #1F2937;
+    --rootsdk-border: #374151;
+    --rootsdk-highlight-light: rgba(255, 255, 255, 0.03);
+    --rootsdk-highlight-normal: rgba(255, 255, 255, 0.06);
+    --rootsdk-highlight-strong: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* ----------------------------------------------------------
+   BASE LAYOUT
+   ---------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: var(--rootsdk-background-primary);
+  color: var(--rootsdk-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ----------------------------------------------------------
+   HEADER
+   ---------------------------------------------------------- */
+.app-header {
+  margin-bottom: 16px;
+}
+
+.header-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header-text {
+  flex: 1;
+}
+
+.app-title {
+  margin: 0 0 4px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--rootsdk-text-primary);
+}
+
+.app-subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: var(--rootsdk-text-secondary);
+}
+
+/* ----------------------------------------------------------
+   TABS NAVIGATION
+   Root tab pattern: contained in a pill-shaped container
+   ---------------------------------------------------------- */
+.tabs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 16px;
+  padding: 6px;
+  background: var(--rootsdk-background-secondary);
+  border: 1px solid var(--rootsdk-border);
+  border-radius: 12px;
+}
+
+.tab-button {
+  padding: 10px 16px;
+  border: none;
+  background: transparent;
+  color: var(--rootsdk-text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 150ms;
+}
+
+.tab-button:hover {
+  background: var(--rootsdk-highlight-light);
+}
+
+.tab-button.active {
+  background: var(--rootsdk-background-primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Focus visible for accessibility */
+.tab-button:focus-visible {
+  outline: 2px solid var(--rootsdk-highlight-strong);
+  outline-offset: 2px;
+}
+
+/* ----------------------------------------------------------
+   TAB CONTENT AREA
+   ---------------------------------------------------------- */
+.tab-content {
+  flex: 1;
+}
+
+/* ----------------------------------------------------------
+   FOOTER
+   ---------------------------------------------------------- */
+.app-footer {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rootsdk-border);
+}
+
+.app-footer p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--rootsdk-text-tertiary);
+  text-align: center;
+}
+
+.app-footer code {
+  background: var(--rootsdk-background-secondary);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+/* ----------------------------------------------------------
+   RESPONSIVE ADJUSTMENTS
+   ---------------------------------------------------------- */
+@media (max-width: 600px) {
+  .app-container {
+    padding: 12px;
+  }
+
+  .app-title {
+    font-size: 20px;
+  }
+
+  .tabs-nav {
+    gap: 2px;
+    padding: 4px;
+  }
+
+  .tab-button {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+
+/* ----------------------------------------------------------
+   SYNTAX HIGHLIGHTING (global utility)
+   Used by CodeBlock and inline code snippets
+   ---------------------------------------------------------- */
+.syntax-comment {
+  color: var(--rootsdk-text-tertiary);
+  font-style: italic;
+}
+
+.syntax-string {
+  color: var(--rootsdk-brand-secondary);
+}
+
+.syntax-keyword {
+  color: var(--rootsdk-brand-primary);
+}
+
+.syntax-property {
+  color: var(--rootsdk-info);
+}
+
+.syntax-value {
+  color: var(--rootsdk-brand-tertiary);
+}
+
+.syntax-selector {
+  color: var(--rootsdk-brand-primary);
+  font-weight: 500;
+}
+
+.syntax-punctuation {
+  color: var(--rootsdk-text-secondary);
+}
