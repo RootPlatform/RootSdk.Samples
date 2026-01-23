@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package tictactoe;
+
+import "core_types.proto";
+
+// Get leaderboard
+message GetLeaderboardRequest {
+  uint32 limit = 1;  // Max number of results (default 20)
+  uint32 offset = 2; // For pagination
+}
+
+message GetLeaderboardResponse {
+  repeated PlayerStats players = 1;
+  uint32 total_count = 2;
+}
+
+// Get stats for a specific player
+message GetPlayerStatsRequest {
+  string user_id = 1;  // If empty, returns current user's stats
+}
+
+message GetPlayerStatsResponse {
+  PlayerStats stats = 1;
+  uint32 rank = 2;  // Position in leaderboard
+}
+
+// Service definition
+service LeaderboardService {
+  rpc GetLeaderboard(GetLeaderboardRequest) returns (GetLeaderboardResponse);
+  rpc GetPlayerStats(GetPlayerStatsRequest) returns (GetPlayerStatsResponse);
+}

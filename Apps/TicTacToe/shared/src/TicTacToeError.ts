@@ -1,0 +1,9 @@
+export enum TicTacToeError {
+  NOT_FOUND = 1,
+  INVALID_MOVE = 2,
+  NOT_YOUR_TURN = 3,
+  GAME_ALREADY_OVER = 4,
+  ALREADY_IN_QUEUE = 5,
+  NOT_IN_QUEUE = 6,
+  GAME_FULL = 7
+}

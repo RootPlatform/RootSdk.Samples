@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package tictactoe;
+
+import "rootsdk/types.proto";
+import "core_types.proto";
+
+// Join the matchmaking queue
+message JoinQueueRequest {
+  // Empty - uses authenticated user
+}
+
+message JoinQueueResponse {
+  bool success = 1;
+  uint32 position = 2;  // Position in queue
+  string error_message = 3;
+  Game game = 4;  // Set if a match was found immediately
+}
+
+// Leave the matchmaking queue
+message LeaveQueueRequest {
+  // Empty - uses authenticated user
+}
+
+message LeaveQueueResponse {
+  bool success = 1;
+}
+
+// Get queue status
+message GetQueueStatusRequest {
+  // Empty - uses authenticated user
+}
+
+message GetQueueStatusResponse {
+  bool in_queue = 1;
+  uint32 position = 2;
+  uint32 total_in_queue = 3;
+}
+
+// Broadcast events
+message MatchFoundEvent {
+  Game game = 1;
+}
+
+message QueueUpdatedEvent {
+  uint32 position = 1;
+  uint32 total_in_queue = 2;
+}
+
+// Service definition
+service MatchmakingService {
+  rpc JoinQueue(JoinQueueRequest) returns (JoinQueueResponse);
+  rpc LeaveQueue(LeaveQueueRequest) returns (LeaveQueueResponse);
+  rpc GetQueueStatus(GetQueueStatusRequest) returns (GetQueueStatusResponse);
+
+  rpc BroadcastMatchFound(MatchFoundEvent) returns (rootsdk.Void);
+  rpc BroadcastQueueUpdated(QueueUpdatedEvent) returns (rootsdk.Void);
+}

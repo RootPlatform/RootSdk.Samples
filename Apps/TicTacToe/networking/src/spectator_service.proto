@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package tictactoe;
+
+import "rootsdk/types.proto";
+import "core_types.proto";
+
+// List active games that can be watched
+message ListActiveGamesRequest {
+  // Empty
+}
+
+message ActiveGameSummary {
+  string game_id = 1;
+  string player_x_name = 2;
+  string player_o_name = 3;
+  uint32 move_count = 4;
+  GameStatus status = 5;
+}
+
+message ListActiveGamesResponse {
+  repeated ActiveGameSummary games = 1;
+}
+
+// Start watching a game
+message WatchGameRequest {
+  string game_id = 1;
+}
+
+message WatchGameResponse {
+  Game game = 1;
+  bool success = 2;
+}
+
+// Stop watching a game
+message StopWatchingRequest {
+  string game_id = 1;
+}
+
+message StopWatchingResponse {
+  bool success = 1;
+}
+
+// Broadcast events for spectators
+message SpectatorGameUpdateEvent {
+  Game game = 1;
+}
+
+// Service definition
+service SpectatorService {
+  rpc ListActiveGames(ListActiveGamesRequest) returns (ListActiveGamesResponse);
+  rpc WatchGame(WatchGameRequest) returns (WatchGameResponse);
+  rpc StopWatching(StopWatchingRequest) returns (StopWatchingResponse);
+
+  rpc BroadcastSpectatorGameUpdate(SpectatorGameUpdateEvent) returns (rootsdk.Void);
+}

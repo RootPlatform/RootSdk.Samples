@@ -1,0 +1,16 @@
+{
+  "name": "@tictactoe/shared",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./dist/cjs/index.js",
+  "types": "./dist/cjs/index.d.ts",
+  "module": "./dist/mjs/index.js",
+  "exports": {
+    "import": "./dist/mjs/index.js",
+    "require": "./dist/cjs/index.js",
+    "default": "./dist/cjs/index.js"
+  },
+  "scripts": {
+    "build": "tsc -p ./tsconfig.cjs.json && tsc -p ./tsconfig.esm.json"
+  }
+}

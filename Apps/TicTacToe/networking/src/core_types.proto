@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package tictactoe;
+
+import "rootsdk/timestamp.proto";
+
+// Cell state in the board
+enum CellState {
+  EMPTY = 0;
+  X = 1;
+  O = 2;
+}
+
+// Game status
+enum GameStatus {
+  WAITING = 0;      // Waiting for second player
+  IN_PROGRESS = 1;  // Game is active
+  X_WINS = 2;       // X player won
+  O_WINS = 3;       // O player won
+  DRAW = 4;         // Game ended in draw
+  ABANDONED = 5;    // Player left
+}
+
+// Player information
+message Player {
+  string user_id = 1;
+  string display_name = 2;
+  CellState marker = 3;  // X or O
+}
+
+// A single move in the game
+message Move {
+  string player_id = 1;
+  uint32 position = 2;  // 0-8, representing the 3x3 grid
+  rootsdk.Timestamp timestamp = 3;
+}
+
+// Full game state
+message Game {
+  string game_id = 1;
+  Player player_x = 2;
+  Player player_o = 3;
+  repeated CellState board = 4;  // 9 cells, indices 0-8
+  CellState current_turn = 5;    // X or O
+  GameStatus status = 6;
+  repeated Move moves = 7;
+  string winner_id = 8;
+  repeated uint32 winning_line = 9;  // Indices of winning cells (3 cells)
+  bool is_ai_game = 10;
+  rootsdk.Timestamp created_at = 11;
+}
+
+// Player statistics
+message PlayerStats {
+  string user_id = 1;
+  string display_name = 2;
+  uint32 wins = 3;
+  uint32 losses = 4;
+  uint32 draws = 5;
+  uint32 total_games = 6;
+  rootsdk.Timestamp created_at = 7;
+  rootsdk.Timestamp updated_at = 8;
+}
+
+// Queue entry
+message QueueEntry {
+  string user_id = 1;
+  string display_name = 2;
+  rootsdk.Timestamp joined_at = 3;
+}

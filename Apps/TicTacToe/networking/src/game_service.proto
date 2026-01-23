@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package tictactoe;
+
+import "rootsdk/types.proto";
+import "core_types.proto";
+
+// Create a game against AI
+message CreateAIGameRequest {
+  // Empty - uses authenticated user
+}
+
+message CreateAIGameResponse {
+  Game game = 1;
+}
+
+// Make a move
+message MakeMoveRequest {
+  string game_id = 1;
+  uint32 position = 2;  // 0-8
+}
+
+message MakeMoveResponse {
+  Game game = 1;
+  bool success = 2;
+  string error_message = 3;
+}
+
+// Get current game state
+message GetGameRequest {
+  string game_id = 1;
+}
+
+message GetGameResponse {
+  Game game = 1;
+}
+
+// Forfeit a game
+message ForfeitRequest {
+  string game_id = 1;
+}
+
+message ForfeitResponse {
+  Game game = 1;
+}
+
+// Request rematch
+message RequestRematchRequest {
+  string game_id = 1;
+}
+
+message RequestRematchResponse {
+  Game new_game = 1;
+  bool success = 2;
+}
+
+// Broadcast events
+message GameUpdatedEvent {
+  Game game = 1;
+}
+
+message GameEndedEvent {
+  Game game = 1;
+}
+
+// Service definition
+service GameService {
+  rpc CreateAIGame(CreateAIGameRequest) returns (CreateAIGameResponse);
+  rpc MakeMove(MakeMoveRequest) returns (MakeMoveResponse);
+  rpc GetGame(GetGameRequest) returns (GetGameResponse);
+  rpc Forfeit(ForfeitRequest) returns (ForfeitResponse);
+  rpc RequestRematch(RequestRematchRequest) returns (RequestRematchResponse);
+
+  rpc BroadcastGameUpdated(GameUpdatedEvent) returns (rootsdk.Void);
+  rpc BroadcastGameEnded(GameEndedEvent) returns (rootsdk.Void);
+}
