@@ -14,7 +14,7 @@
   },
   "permissions": {
     "community": {
-      "ManageRoles": true
+      "manageRoles": true
     }
   }
 }

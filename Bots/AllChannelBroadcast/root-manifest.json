@@ -14,7 +14,7 @@
   },
   "permissions": {
     "channel": {
-      "CreateMessage": true
+      "createMessage": true
     }
   }
 }

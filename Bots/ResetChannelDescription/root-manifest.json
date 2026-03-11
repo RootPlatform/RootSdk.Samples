@@ -14,7 +14,7 @@
   },
   "permissions": {
     "channel": {
-      "FullControl": true
+      "fullControl": true
     }
   }
 }
