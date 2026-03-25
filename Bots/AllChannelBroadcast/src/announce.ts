@@ -1,6 +1,7 @@
 import {
   rootServer,
   RootApiException,
+  ErrorCodeType,
   MessageType,
   ChannelMessageEvent,
   ChannelMessageCreatedEvent,
@@ -40,11 +41,18 @@ async function onMessage(evt: ChannelMessageCreatedEvent): Promise<void> {
     await sendMessage(announcement, channelGuids);
   } catch (xcpt: unknown) {
     if (xcpt instanceof RootApiException) {
-      console.error("RootApiException:", xcpt.errorCode);
+      switch (xcpt.errorCode) {
+        case ErrorCodeType.NoPermissionToCreate:
+          console.error("Missing createMessage permission in root-manifest.json");
+          break;
+        case ErrorCodeType.TooManyRequests:
+          console.error("Rate limited — commands max ~5 req/s");
+          break;
+        default:
+          console.error("RootApiException:", xcpt.errorCode);
+      }
     } else if (xcpt instanceof Error) {
       console.error("Unexpected error:", xcpt.message);
-    } else {
-      console.error("Unknown error:", xcpt);
     }
   }
 }
@@ -70,17 +78,28 @@ async function getChannelGuids(type: ChannelType): Promise<ChannelGuid[]> {
   return channelIds;
 }
 
+// Each channelMessages.create() is a command-rate-limited API call (~5 req/s).
+// For communities with many text channels, some sends may be rate-limited.
 async function sendMessage(
   reply: string,
   channels: ChannelGuid[]
 ): Promise<void> {
   for (const channelGuid of channels) {
-    const request: ChannelMessageCreateRequest = {
-      channelId: channelGuid,
-      content: reply,
-    };
+    try {
+      const request: ChannelMessageCreateRequest = {
+        channelId: channelGuid,
+        content: reply,
+      };
 
-    await rootServer.community.channelMessages.create(request);
+      await rootServer.community.channelMessages.create(request);
+    } catch (xcpt: unknown) {
+      // Log and continue so one failure doesn't abort the remaining channels
+      if (xcpt instanceof RootApiException) {
+        console.error("Failed to send to channel", channelGuid, ":", xcpt.errorCode);
+      } else if (xcpt instanceof Error) {
+        console.error("Failed to send to channel", channelGuid, ":", xcpt.message);
+      }
+    }
   }
 }
 

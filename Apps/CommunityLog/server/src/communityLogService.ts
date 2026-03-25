@@ -1,10 +1,10 @@
 import {
   Client,
   rootServer,
+  RootServerException,
   RootApiException,
   CommunityAppLogType,
   CommunityAppLogCreateRequest,
-  CommunityAppLogCreateResponse
 } from "@rootsdk/server-app";
 
 import { CommunityLogServiceBase } from "@CommunityLogStressTest/gen-server";
@@ -12,42 +12,29 @@ import { CreateCommunityLogMessageRequest, CreateCommunityLogMessageResponse, Se
 
 export class CommunityLogService extends CommunityLogServiceBase {
   async create(request: CreateCommunityLogMessageRequest, client: Client): Promise<CreateCommunityLogMessageResponse> {
-
     await writeCommunityLog(request.message, toCommunityAppLogType(request.severity));
 
-    const response: CreateCommunityLogMessageResponse = { };
-
-    return response;
+    return {};
   }
 }
 
-/**
- * Writes a single log entry to the community log.
- * @param message The message text to log
- * @param severity The severity level of the message
- */
+// Wraps the SDK call so that any RootApiException is surfaced to the
+// calling client as a RootServerException rather than silently swallowed.
 async function writeCommunityLog(message: string, severity: CommunityAppLogType): Promise<void> {
   const request: CommunityAppLogCreateRequest = { communityAppLogType: severity, message };
 
-  console.log("Writing log:", request.communityAppLogType, request.message);
-
   try {
-    const response: CommunityAppLogCreateResponse = await rootServer.dataStore.logs.community.create(request);
+    await rootServer.dataStore.logs.community.create(request);
   } catch (error: unknown) {
     if (error instanceof RootApiException) {
-      console.error("Root API exception:", error.errorCode, error.message);
-    } else {
-      console.error("Unexpected error writing to community log:", error);
+      throw new RootServerException(1, "Failed to write community log: " + error.message);
     }
+    throw error;
   }
 }
 
-/**
- * Converts a Severity value to a CommunityAppLogType.
- * @param severity The Severity enum value
- * @returns The corresponding CommunityAppLogType
- */
-export function toCommunityAppLogType(severity: Severity): CommunityAppLogType {
+// Maps the proto Severity enum to the SDK's CommunityAppLogType enum
+function toCommunityAppLogType(severity: Severity): CommunityAppLogType {
   switch (severity) {
     case Severity.INFO : return CommunityAppLogType.Info;
     case Severity.WARN : return CommunityAppLogType.Warn;

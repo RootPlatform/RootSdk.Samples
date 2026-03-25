@@ -1,3 +1,4 @@
+import { Client, rootServer } from "@rootsdk/server-app";
 import { Timestamp } from "@tictactoe/gen-shared";
 import { GameState, GameStatus, Player, Move } from "./lib/gameManager";
 import { PlayerStatsModel } from "./repositories/playerStatsRepository";
@@ -9,6 +10,16 @@ import {
   Move as ProtoMove,
   PlayerStats,
 } from "@tictactoe/gen-shared";
+
+export async function getNickname(client: Client): Promise<string> {
+  try {
+    const member = await rootServer.community.communityMembers.get({ userId: client.userId });
+    return member.nickname || client.userId.toString();
+  } catch (err: unknown) {
+    console.error("Failed to get nickname:", err);
+    return client.userId.toString();
+  }
+}
 
 export class GameMapper {
   static toProto(game: GameState): Game {

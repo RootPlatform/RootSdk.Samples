@@ -1,8 +1,8 @@
 import {
   rootServer,
   RootApiException,
+  ErrorCodeType,
   MessageType,
-  ChannelMessage,
   ChannelMessageEvent,
   ChannelMessageCreatedEvent,
   ChannelMessageCreateRequest,
@@ -10,7 +10,6 @@ import {
   CommunityMemberGetRequest,
   CommunityRole,
   CommunityRoleGuid,
-  CommunityRoleGetRequest,
   UserGuid,
 } from "@rootsdk/server-bot";
 
@@ -50,15 +49,21 @@ async function onMessage(evt: ChannelMessageCreatedEvent): Promise<void> {
       content: reply,
     };
 
-    const cm: ChannelMessage =
-      await rootServer.community.channelMessages.create(request);
+    await rootServer.community.channelMessages.create(request);
   } catch (xcpt: unknown) {
     if (xcpt instanceof RootApiException) {
-      console.error("RootApiException:", xcpt.errorCode);
+      switch (xcpt.errorCode) {
+        case ErrorCodeType.NoPermissionToCreate:
+          console.error("Missing createMessage permission in root-manifest.json");
+          break;
+        case ErrorCodeType.TooManyRequests:
+          console.error("Rate limited — commands max ~5 req/s");
+          break;
+        default:
+          console.error("RootApiException:", xcpt.errorCode);
+      }
     } else if (xcpt instanceof Error) {
       console.error("Unexpected error:", xcpt.message);
-    } else {
-      console.error("Unknown error:", xcpt);
     }
   }
 }
@@ -85,22 +90,16 @@ async function getMember(userId: UserGuid): Promise<CommunityMember> {
   return user;
 }
 
-async function getRoleName(roleId: CommunityRoleGuid): Promise<string> {
-  const request: CommunityRoleGetRequest = { id: roleId };
-
-  const role: CommunityRole = await rootServer.community.communityRoles.get(
-    request
-  );
-
-  return role.name;
-}
-
 async function getMemberRoleNames(user: CommunityMember): Promise<string[]> {
   const roleIds: CommunityRoleGuid[] = user.communityRoleIds ?? [];
 
-  const roleNames: string[] = await Promise.all(roleIds.map(getRoleName));
+  // Fetch all roles once instead of one API call per role
+  const roles: CommunityRole[] =
+    await rootServer.community.communityRoles.list();
 
-  return roleNames;
+  return roleIds
+    .map((id) => roles.find((r) => r.id === id)?.name)
+    .filter((name): name is string => !!name);
 }
 
 async function getCommunityRoleNames(): Promise<string[]> {

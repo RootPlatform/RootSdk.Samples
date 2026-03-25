@@ -1,17 +1,34 @@
 import {
   rootServer,
   RootApiException,
+  ErrorCodeType,
+  RootBotStartState,
   MessageType,
   ChannelMessageEvent,
   ChannelMessageCreatedEvent,
   CommunityMemberRoleAddRequest,
-  CommunityRole,
   CommunityRoleGuid,
   UserGuid,
 } from "@rootsdk/server-bot";
 
-// Subscribe to be notified of new messages (in all channels)
-export function initializeAutorole(): void {
+// Resolved once at startup from the start state snapshot
+let participantRoleId: CommunityRoleGuid | undefined;
+
+export function initializeAutorole(state: RootBotStartState): void {
+  // Resolve the role at startup from the start state snapshot instead of
+  // making an API call every time a member hits the message threshold.
+  const roleName = "Participant";
+  for (const [roleId, role] of state.communityRoles) {
+    if (role.name === roleName) {
+      participantRoleId = roleId;
+      break;
+    }
+  }
+
+  if (!participantRoleId) {
+    console.error(`Role "${roleName}" not found — auto-role assignment will be disabled`);
+  }
+
   rootServer.community.channelMessages.on(ChannelMessageEvent.ChannelMessageCreated, onMessage);
 }
 
@@ -20,47 +37,34 @@ async function onMessage(evt: ChannelMessageCreatedEvent): Promise<void> {
     if (evt.messageType === MessageType.System)
       return;
 
-    // Increment the persisted number of messages sent by this user
+    if (!participantRoleId)
+      return;
+
     const count: number = await rootServer.dataStore.appData.update(
       evt.userId,
       (val: number) => val + 1,
       0
     );
 
-    // After posting 5 messages, the user is given a new role
-    if (count == 5) {
-      const roleId: CommunityRoleGuid = await getRoleId();
-
-      await assignRole(evt.userId, roleId);
+    // Assign the role once after the member posts their 5th message
+    if (count === 5) {
+      await assignRole(evt.userId, participantRoleId);
     }
   } catch (xcpt: unknown) {
     if (xcpt instanceof RootApiException) {
-      console.error("RootApiException:", xcpt.errorCode);
+      switch (xcpt.errorCode) {
+        case ErrorCodeType.TooManyRequests:
+          console.error("Rate limited — commands max ~5 req/s");
+          break;
+        default:
+          console.error("RootApiException:", xcpt.errorCode);
+      }
     } else if (xcpt instanceof Error) {
       console.error("Unexpected error:", xcpt.message);
-    } else {
-      console.error("Unknown error:", xcpt);
     }
   }
 }
 
-// Get the roleId for the hardcoded "Participant" role
-async function getRoleId(): Promise<CommunityRoleGuid> {
-  const name: string = "Participant";
-
-  const roles: CommunityRole[] =
-    await rootServer.community.communityRoles.list();
-
-  const targetRole = roles.find((role) => role.name === name);
-
-  if (!targetRole) {
-    throw new Error(`Role "${name}" not found`);
-  }
-
-  return targetRole.id;
-}
-
-// Assign the role indicated by 'roleId' to the specified user
 async function assignRole(userId: UserGuid, roleId: CommunityRoleGuid): Promise<void> {
   const request: CommunityMemberRoleAddRequest = {
     communityRoleId: roleId,

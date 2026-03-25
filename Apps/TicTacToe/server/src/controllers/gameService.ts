@@ -1,10 +1,10 @@
-import { Client, RootServerException, rootServer } from "@rootsdk/server-app";
+import { Client, RootServerException } from "@rootsdk/server-app";
 import { GameServiceBase } from "@tictactoe/gen-server";
 import { TicTacToeError } from "@tictactoe/shared";
 import { gameManager, GameStatus } from "../lib/gameManager";
 import { gameClientTracker } from "../lib/gameClients";
 import { playerStatsRepository } from "../repositories/playerStatsRepository";
-import { GameMapper } from "../utilities";
+import { getNickname, GameMapper } from "../utilities";
 import {
   CreateAIGameRequest,
   CreateAIGameResponse,
@@ -19,15 +19,6 @@ import {
   GameUpdatedEvent,
   GameEndedEvent,
 } from "@tictactoe/gen-shared";
-
-async function getNickname(client: Client): Promise<string> {
-  try {
-    const member = await rootServer.community.communityMembers.get({ userId: client.userId });
-    return member.nickname || client.userId.toString();
-  } catch {
-    return client.userId.toString();
-  }
-}
 
 export class GameService extends GameServiceBase {
   async createAIGame(request: CreateAIGameRequest, client: Client): Promise<CreateAIGameResponse> {

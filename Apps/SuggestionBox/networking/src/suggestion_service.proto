@@ -13,7 +13,6 @@ message SuggestionCreateRequest {
 
 message SuggestionCreateResponse {
   Suggestion suggestion = 1;
-  bool success          = 2;
 }
 
 message SuggestionCreatedEvent {

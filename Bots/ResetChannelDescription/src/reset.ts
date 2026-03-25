@@ -1,5 +1,7 @@
 import {
   rootServer,
+  RootApiException,
+  ErrorCodeType,
   Channel,
   ChannelGetRequest,
   ChannelWebRtcEvent,
@@ -7,22 +9,41 @@ import {
   ChannelGuid,
   ChannelWebRtcListRequest,
   ChannelWebRtcListResponse,
-  ChannelEditRequest
+  ChannelEditRequest,
 } from "@rootsdk/server-bot";
 
-export function initialize(): void {
+export function initializeReset(): void {
   rootServer.community.channelWebRtcs.on(ChannelWebRtcEvent.ChannelWebRtcUserDetach, onDetach);
 }
 
+// When the last participant leaves a voice channel, clear its description
+// so it resets for the next session.
 async function onDetach(evt: ChannelWebRtcUserDetachEvent): Promise<void> {
-  const channelId: ChannelGuid = evt.channelId;
+  try {
+    const channelId: ChannelGuid = evt.channelId;
 
-  if (!(await isEmpty(channelId)))
-    return;
+    if (!(await isEmpty(channelId)))
+      return;
 
-  const channel: Channel = await getChannel(channelId);
+    const channel: Channel = await getChannel(channelId);
 
-  await updateChannelDescription(channel, "");
+    await updateChannelDescription(channel, "");
+  } catch (xcpt: unknown) {
+    if (xcpt instanceof RootApiException) {
+      switch (xcpt.errorCode) {
+        case ErrorCodeType.NotFound:
+          console.error("Channel not found — it may have been deleted");
+          break;
+        case ErrorCodeType.TooManyRequests:
+          console.error("Rate limited — commands max ~5 req/s");
+          break;
+        default:
+          console.error("RootApiException:", xcpt.errorCode);
+      }
+    } else if (xcpt instanceof Error) {
+      console.error("Unexpected error:", xcpt.message);
+    }
+  }
 }
 
 async function getChannel(channelId: ChannelGuid): Promise<Channel> {

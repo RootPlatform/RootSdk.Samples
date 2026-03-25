@@ -69,15 +69,17 @@ export function useSuggestionCache() {
   //
 
   const createSuggestion = useCallback(async (text: string): Promise<void> => {
-    // create the suggestion on the server
-    const request: SuggestionCreateRequest = { text };
-    const response: SuggestionCreateResponse = await suggestionServiceClient.create(request);
+    try {
+      const request: SuggestionCreateRequest = { text };
+      const response: SuggestionCreateResponse = await suggestionServiceClient.create(request);
 
-    if (response.success) {
-      // add the new suggestion to the client-side cache
       updateSuggestions((map) => { map.set(response.suggestion!.id, response.suggestion!); });
-    } else {
-      setError("That suggestion already exists. Please try again.");
+    } catch (error) {
+      if (error instanceof RootServerException) {
+        if (error.code === SuggestionBoxError.DUPLICATE_SUGGESTION) {
+          setError("That suggestion already exists. Please try again.");
+        }
+      }
     }
   },
   [updateSuggestions]);

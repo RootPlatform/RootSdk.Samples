@@ -31,7 +31,7 @@ Samples repository
 |--------|-------------|
 | **HelloWorld** | Echoes messages back to clients. The simplest App with no persistence. |
 | **ProtobufService** | Community voting between two options. Demonstrates building a service without persistence. |
-| **DataStorage** | Simple task list with persistence. Shows two data-access implementations: Knex + SQLite and Prisma + SQLite. |
+| **DataStorage** | Simple task list with persistence. Shows three data-access implementations: in-memory, Knex + SQLite, and Prisma + SQLite. |
 | **CommunityLog** | Demonstrates the Community Log API for writing audit/activity logs. |
 | **SuggestionBox** | Shared suggestion box with voting. Shows client UI, multiple services, and database persistence. |
 | **Themes** | Visual theme customization. Demonstrates applying custom themes to the client UI. |

@@ -4,20 +4,21 @@ import { matchmakingService } from "./controllers/matchmakingService";
 import { spectatorService } from "./controllers/spectatorService";
 import { leaderboardService } from "./controllers/leaderboardService";
 import { initializeDatabase } from "./repositories/playerStatsRepository";
+import { matchmakingQueue } from "./lib/matchmaking";
 
 async function onStarting(state: RootAppStartState) {
-  // Initialize database tables
   await initializeDatabase();
 
-  // Register services
   rootServer.lifecycle.addService(gameService);
   rootServer.lifecycle.addService(matchmakingService);
   rootServer.lifecycle.addService(spectatorService);
   rootServer.lifecycle.addService(leaderboardService);
+}
 
-  console.log("TicTacToe server started");
+async function onStopping() {
+  matchmakingQueue.stop();
 }
 
 (async () => {
-  await rootServer.lifecycle.start(onStarting);
+  await rootServer.lifecycle.start(onStarting, onStopping);
 })();

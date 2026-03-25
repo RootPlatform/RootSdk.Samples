@@ -27,15 +27,13 @@ export class SuggestionService extends SuggestionServiceBase {
     const suggestionModel: SuggestionModel | null = await suggestionRepository.create(client.userId, request.text);
 
     if (!suggestionModel) {
-      const response: SuggestionCreateResponse = { success: false };
-      return response;
+      throw new RootServerException(SuggestionBoxError.DUPLICATE_SUGGESTION, "A suggestion with this text already exists");
     }
 
     const event: SuggestionCreatedEvent = { suggestion: SuggestionMapper.toDto(suggestionModel) };
     this.broadcastCreated(event, "all", client);
 
-    const response: SuggestionCreateResponse = { suggestion: SuggestionMapper.toDto(suggestionModel), success: true };
-    return response;
+    return { suggestion: SuggestionMapper.toDto(suggestionModel) };
   }
 
   async list(request: SuggestionListRequest /* request is unused/empty */, client: Client): Promise<SuggestionListResponse> {

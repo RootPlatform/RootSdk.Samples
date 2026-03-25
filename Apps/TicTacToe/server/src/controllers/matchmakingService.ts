@@ -1,9 +1,9 @@
-import { Client, rootServer } from "@rootsdk/server-app";
+import { Client } from "@rootsdk/server-app";
 import { MatchmakingServiceBase } from "@tictactoe/gen-server";
 import { matchmakingQueue } from "../lib/matchmaking";
 import { gameClientTracker } from "../lib/gameClients";
 import { playerStatsRepository } from "../repositories/playerStatsRepository";
-import { GameMapper } from "../utilities";
+import { getNickname, GameMapper } from "../utilities";
 import {
   JoinQueueRequest,
   JoinQueueResponse,
@@ -15,15 +15,6 @@ import {
   QueueUpdatedEvent,
 } from "@tictactoe/gen-shared";
 import { GameState } from "../lib/gameManager";
-
-async function getNickname(client: Client): Promise<string> {
-  try {
-    const member = await rootServer.community.communityMembers.get({ userId: client.userId });
-    return member.nickname || client.userId.toString();
-  } catch {
-    return client.userId.toString();
-  }
-}
 
 // Store client references for broadcasting
 const clientsByUserId: Map<string, Client> = new Map();

@@ -41,14 +41,18 @@ async function onMessage(evt: ChannelMessageCreatedEvent): Promise<void> {
     await rootServer.community.channelMessages.create(request);
   } catch (xcpt: unknown) {
     if (xcpt instanceof RootApiException) {
-      if (xcpt.errorCode === ErrorCodeType.NoPermissionToCreate)
-        console.error("RootApiException: missing CreateMessage permission");
-      else
-        console.error("RootApiException: " + xcpt.errorCode);
+      switch (xcpt.errorCode) {
+        case ErrorCodeType.NoPermissionToCreate:
+          console.error("Missing createMessage permission in root-manifest.json");
+          break;
+        case ErrorCodeType.TooManyRequests:
+          console.error("Rate limited — commands max ~5 req/s");
+          break;
+        default:
+          console.error("RootApiException:", xcpt.errorCode);
+      }
     } else if (xcpt instanceof Error) {
       console.error("Unexpected error:", xcpt.message);
-    } else {
-      console.error("Unknown error:", xcpt);
     }
   }
 }

@@ -1,8 +1,8 @@
 import { rootServer, RootBotStartState } from "@rootsdk/server-bot";
-import { initialize } from "./reset";
+import { initializeReset } from "./reset";
 
 async function onStarting(state: RootBotStartState) {
-  initialize();
+  initializeReset();
 }
 
 (async () => {

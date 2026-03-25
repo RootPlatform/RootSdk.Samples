@@ -1,4 +1,4 @@
-import { Client } from "@rootsdk/server-app";
+import { Client, RootServerException } from "@rootsdk/server-app";
 import {
   TaskCreateRequest,
   TaskCreateResponse,
@@ -24,26 +24,26 @@ export class TaskService extends TaskServiceBase {
     const event: TaskCreatedEvent = { task: { id: task.id, text: task.text } };
     this.broadcastCreated(event, "all", client);
 
-    const response: TaskCreateResponse = { task: { id: task.id, text: task.text } };
-    return response;
+    return { task: { id: task.id, text: task.text } };
   }
 
   async list(request: TaskListRequest, client: Client): Promise<TaskListResponse> {
     const tasks: TaskModel[] = await taskRepository.list();
 
-    const response: TaskListResponse = { tasks: tasks.map((t) => ({ id: t.id, text: t.text, })), };
-
-    return response;
+    return { tasks: tasks.map((t) => ({ id: t.id, text: t.text })) };
   }
 
   async delete(request: TaskDeleteRequest, client: Client): Promise<TaskDeleteResponse> {
-    await taskRepository.delete(request.id);
+    const result = await taskRepository.delete(request.id);
+
+    if (result === -1) {
+      throw new RootServerException(1, `Task ${request.id} not found`);
+    }
 
     const event: TaskDeletedEvent = { id: request.id };
     this.broadcastDeleted(event, "all", client);
 
-    const response: TaskDeleteResponse = { id: request };
-    return response;
+    return {};
   }
 }
 
