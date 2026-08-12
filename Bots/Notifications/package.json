@@ -1,7 +1,7 @@
 {
-  "name": "@echobot/bot",
+  "name": "@notificationsbot/bot",
   "author": "Root Communications, Inc.",
-  "description": "Echo Bot - Sample",
+  "description": "Notifications Bot - Sample",
   "version": "1.0.0",
   "private": true,
   "engines": {

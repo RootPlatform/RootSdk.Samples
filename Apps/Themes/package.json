@@ -8,11 +8,11 @@
     "node": ">=22"
   },
   "dependencies": {
-    "@rootsdk/client-app": "*",
-    "@rootsdk/server-app": "*"
+    "@rootsdk/client-app": "^0.21.3",
+    "@rootsdk/server-app": "^0.21.3"
   },
   "devDependencies": {
-    "@rootsdk/dev-tools": "*",
+    "@rootsdk/dev-tools": "^0.21.3",
     "typescript": "^5.8.2"
   },
   "scripts": {

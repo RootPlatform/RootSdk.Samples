@@ -49,5 +49,6 @@ To run a sample App, follow the steps to [build](https://docs.rootapp.com/docs/a
 | **RoleList** | Lists community roles and member roles. Shows retrieving role information. |
 | **RoleAssignment** | Auto-assigns a role to members who post messages. Shows programmatic role assignment. |
 | **ResetChannelDescription** | Clears a voice channel's description when empty. Demonstrates WebRTC participant events. |
+| **Notifications** | Sends a notification to the member who requested it. Shows the notification API, the title and description limits, and how to detect a send that reached nobody. |
 
 To run a sample Bot, follow the steps to [build](https://docs.rootapp.com/docs/bot-docs/get-started/build-your-bot/) and [test](https://docs.rootapp.com/docs/bot-docs/get-started/test-your-bot/) a Bot.
