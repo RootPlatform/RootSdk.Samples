@@ -1,7 +1,7 @@
 {
-  "name": "@rolebot/bot",
+  "name": "@notificationsbot/bot",
   "author": "Root Communications, Inc.",
-  "description": "Role Bot",
+  "description": "Notifications Bot - Sample",
   "version": "1.0.0",
   "private": true,
   "engines": {
