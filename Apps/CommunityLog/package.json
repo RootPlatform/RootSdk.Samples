@@ -5,14 +5,14 @@
   "private": true,
   "engines": { "node": ">=22" },
   "dependencies": {
-    "@rootsdk/client-app": "^0.21.2",
-    "@rootsdk/server-app": "^0.21.2",
+    "@rootsdk/client-app": "^0.21.3",
+    "@rootsdk/server-app": "^0.21.3",
     "@CommunityLogStressTest/gen-client": "file:./networking/gen/client",
     "@CommunityLogStressTest/gen-server": "file:./networking/gen/server",
     "@CommunityLogStressTest/gen-shared": "file:./networking/gen/shared"
   },
   "devDependencies": {
-    "@rootsdk/dev-tools": "^0.21.2",
+    "@rootsdk/dev-tools": "^0.21.3",
     "typescript": "^5.8.2",
     "@types/node": "^22.10.2"
   },
