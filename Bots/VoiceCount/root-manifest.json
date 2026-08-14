@@ -1,0 +1,20 @@
+{
+  "id": "xxxxxxxxxxxxxxxxxxxxxx",
+  "version": "1.0.0",
+  "package": {
+    "server": {
+      "launch": "dist/main.js",
+      "deploy": [
+          "dist"
+      ],
+      "nodeModules": [
+          "node_modules"
+      ]
+    }
+  },
+  "permissions": {
+    "channel": {
+      "fullControl": true
+    }
+  }
+}
