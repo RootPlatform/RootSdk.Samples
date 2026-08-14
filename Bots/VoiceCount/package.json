@@ -1,0 +1,22 @@
+{
+  "name": "@voicecount/bot",
+  "author": "Root Communications, Inc.",
+  "description": "Voice Count Bot - Sample",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@rootsdk/server-bot": "^0.21.3"
+  },
+  "devDependencies": {
+    "@rootsdk/dev-tools": "^0.21.3",
+    "typescript": "^5.8.2"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "node clean.js",
+    "bot": "rootsdk start devhost"
+  }
+}
