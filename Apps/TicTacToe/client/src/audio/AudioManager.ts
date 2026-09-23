@@ -30,20 +30,32 @@ class AudioManager {
 
     try {
       const ctx = this.getContext();
-      const oscillator = ctx.createOscillator();
-      const gainNode = ctx.createGain();
 
-      oscillator.type = type;
-      oscillator.frequency.setValueAtTime(frequency, ctx.currentTime);
+      const emit = () => {
+        const oscillator = ctx.createOscillator();
+        const gainNode = ctx.createGain();
 
-      gainNode.gain.setValueAtTime(volume, ctx.currentTime);
-      gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+        oscillator.type = type;
+        oscillator.frequency.setValueAtTime(frequency, ctx.currentTime);
 
-      oscillator.connect(gainNode);
-      gainNode.connect(ctx.destination);
+        gainNode.gain.setValueAtTime(volume, ctx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
 
-      oscillator.start(ctx.currentTime);
-      oscillator.stop(ctx.currentTime + duration);
+        oscillator.connect(gainNode);
+        gainNode.connect(ctx.destination);
+
+        oscillator.start(ctx.currentTime);
+        oscillator.stop(ctx.currentTime + duration);
+      };
+
+      // A context can start suspended, and a suspended context produces no
+      // sound and no error. Its clock is also frozen, so schedule after resume.
+      if (ctx.state === "suspended") {
+        ctx.resume().then(emit).catch((e) => console.warn("Audio resume failed:", e));
+        return;
+      }
+
+      emit();
     } catch (e) {
       console.warn("Audio playback failed:", e);
     }
@@ -64,7 +76,6 @@ class AudioManager {
     if (!this.enabled) return;
 
     try {
-      const ctx = this.getContext();
       const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
       const duration = 0.15;
 
@@ -83,7 +94,6 @@ class AudioManager {
     if (!this.enabled) return;
 
     try {
-      const ctx = this.getContext();
       const notes = [392, 349.23, 329.63, 293.66]; // G4, F4, E4, D4
       const duration = 0.2;
 
