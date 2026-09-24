@@ -36,6 +36,7 @@ Samples repository
 | **SuggestionBox** | Shared suggestion box with voting. Shows client UI, multiple services, and database persistence. |
 | **Themes** | Visual theme customization. Demonstrates applying custom themes to the client UI. |
 | **TicTacToe** | Multiplayer Tic Tac Toe game. Features AI opponent, online matchmaking, spectator mode, and leaderboard. |
+| **AudioPlayer** | Plays a music track and a sound effect bundled with the client. Shows where audio files live in the package and how to play them with an `<audio>` element. |
 
 To run a sample App, follow the steps to [build](https://docs.rootapp.com/docs/app-docs/get-started/build-your-app/) and [test](https://docs.rootapp.com/docs/app-docs/get-started/test-your-app/) an App.
 
