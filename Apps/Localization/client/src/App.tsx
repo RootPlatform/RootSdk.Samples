@@ -1,58 +1,77 @@
 import React, { useEffect, useState } from "react";
 import { RootServerException } from "@rootsdk/client-app";
 import { likesServiceClient, LikesServiceClientEvent } from "@localization/gen-client";
-import { Likes, LikesChangedEvent, LikesError } from "@localization/gen-shared";
-import { formatRelativeTime, languageName, t, tn } from "./i18n";
+import { LikesError, LikesResponse } from "@localization/gen-shared";
+import { currentLanguageName, formatTimeAgo, translate, translatePlural } from "./translations/translate";
 
-function errorText(error: unknown): string {
+function translateError(error: unknown): string {
   if (error instanceof RootServerException && error.code === LikesError.NOTHING_TO_CLEAR) {
-    return t("error.NOTHING_TO_CLEAR");
+    return translate("error.NOTHING_TO_CLEAR");
   }
-  return t("error.generic");
+  return translate("error.generic");
 }
 
 const App: React.FC = () => {
-  const [likes, setLikes] = useState<Likes>({ count: 0, lastGivenAt: 0 });
-  const [error, setError] = useState("");
-  const [now, setNow] = useState(Date.now());
+  const [likeCount, setLikeCount] = useState(0);
+  const [lastLikedAt, setLastLikedAt] = useState(0);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [currentTime, setCurrentTime] = useState(Date.now());
 
-  const run = async (action: () => Promise<{ likes?: Likes }>): Promise<void> => {
-    try {
-      setError("");
-      const response = await action();
-      if (response.likes) setLikes(response.likes);
-    } catch (caught) {
-      setError(errorText(caught));
-    }
+  const showLikes = (likes: LikesResponse): void => {
+    setLikeCount(likes.count);
+    setLastLikedAt(likes.lastLikedAt);
   };
 
   useEffect(() => {
-    void run(() => likesServiceClient.get({}));
+    likesServiceClient
+      .getLikes({})
+      .then(showLikes)
+      .catch((error) => setErrorMessage(translateError(error)));
 
-    const handleChanged = (event: LikesChangedEvent): void => {
-      if (event.likes) setLikes(event.likes);
-    };
-    likesServiceClient.on(LikesServiceClientEvent.Changed, handleChanged);
+    likesServiceClient.on(LikesServiceClientEvent.LikesChanged, showLikes);
 
-    const timer = setInterval(() => setNow(Date.now()), 30000);
+    const clock = setInterval(() => setCurrentTime(Date.now()), 30000);
 
     return () => {
-      likesServiceClient.off(LikesServiceClientEvent.Changed, handleChanged);
-      clearInterval(timer);
+      likesServiceClient.off(LikesServiceClientEvent.LikesChanged, showLikes);
+      clearInterval(clock);
     };
   }, []);
 
+  const handleLikeClick = async (): Promise<void> => {
+    setErrorMessage("");
+    try {
+      showLikes(await likesServiceClient.addLike({}));
+    } catch (error) {
+      setErrorMessage(translateError(error));
+    }
+  };
+
+  const handleClearClick = async (): Promise<void> => {
+    setErrorMessage("");
+    try {
+      showLikes(await likesServiceClient.clearLikes({}));
+    } catch (error) {
+      setErrorMessage(translateError(error));
+    }
+  };
+
   return (
     <div>
-      <h1>{t("app.title")}</h1>
-      <p>{likes.count === 0 ? t("likes.none") : tn("likes.count", likes.count)}</p>
-      {likes.lastGivenAt > 0 && (
-        <p>{t("likes.lastGiven", { time: formatRelativeTime(likes.lastGivenAt, now) })}</p>
+      <h1>{translate("app.title")}</h1>
+
+      <p>{likeCount === 0 ? translate("likes.none") : translatePlural("likes.count", likeCount)}</p>
+
+      {lastLikedAt > 0 && (
+        <p>{translate("likes.lastLiked", { time: formatTimeAgo(lastLikedAt, currentTime) })}</p>
       )}
-      <button onClick={() => run(() => likesServiceClient.give({}))}>{t("action.like")}</button>
-      <button onClick={() => run(() => likesServiceClient.clear({}))}>{t("action.clear")}</button>
-      {error && <p role="alert">{error}</p>}
-      <p>{t("app.language", { language: languageName() })}</p>
+
+      <button onClick={handleLikeClick}>{translate("action.like")}</button>
+      <button onClick={handleClearClick}>{translate("action.clear")}</button>
+
+      {errorMessage && <p role="alert">{errorMessage}</p>}
+
+      <p>{translate("app.language", { language: currentLanguageName })}</p>
     </div>
   );
 };

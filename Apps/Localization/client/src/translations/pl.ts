@@ -1,6 +1,4 @@
-import type { Messages } from "./types";
-
-export const pl: Messages = {
+export const pl: Record<string, string> = {
   "app.title": "Polubienia",
   "app.language": "Język: {language}",
   "likes.count_one": "{count} osoba to polubiła",
@@ -8,7 +6,7 @@ export const pl: Messages = {
   "likes.count_many": "{count} osób to polubiło",
   "likes.count_other": "{count} osoby to polubiło",
   "likes.none": "Nikt jeszcze tego nie polubił",
-  "likes.lastGiven": "Ostatnie polubienie: {time}",
+  "likes.lastLiked": "Ostatnie polubienie: {time}",
   "action.like": "Lubię to",
   "action.clear": "Wyczyść polubienia",
   "error.NOTHING_TO_CLEAR": "Nie ma polubień do wyczyszczenia.",

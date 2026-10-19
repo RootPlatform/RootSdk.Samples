@@ -1,37 +1,43 @@
 import { Client, RootServerException } from "@rootsdk/server-app";
 import {
-  Likes,
+  AddLikeRequest,
+  ClearLikesRequest,
+  GetLikesRequest,
   LikesError,
-  LikesGetRequest,
-  LikesGetResponse,
-  LikesGiveRequest,
-  LikesGiveResponse,
-  LikesClearRequest,
-  LikesClearResponse,
+  LikesResponse,
 } from "@localization/gen-shared";
 import { LikesServiceBase } from "@localization/gen-server";
 
 export class LikesService extends LikesServiceBase {
-  private likes: Likes = { count: 0, lastGivenAt: 0 };
+  private likeCount = 0;
+  private lastLikedAt = 0;
 
-  async get(request: LikesGetRequest, client: Client): Promise<LikesGetResponse> {
-    return { likes: this.likes };
+  async getLikes(request: GetLikesRequest, client: Client): Promise<LikesResponse> {
+    return this.currentLikes();
   }
 
-  async give(request: LikesGiveRequest, client: Client): Promise<LikesGiveResponse> {
-    this.likes = { count: this.likes.count + 1, lastGivenAt: Date.now() };
-    this.broadcastChanged({ likes: this.likes }, "all", client);
-    return { likes: this.likes };
+  async addLike(request: AddLikeRequest, client: Client): Promise<LikesResponse> {
+    this.likeCount += 1;
+    this.lastLikedAt = Date.now();
+
+    this.broadcastLikesChanged(this.currentLikes(), "all", client);
+    return this.currentLikes();
   }
 
-  async clear(request: LikesClearRequest, client: Client): Promise<LikesClearResponse> {
-    if (this.likes.count === 0) {
+  async clearLikes(request: ClearLikesRequest, client: Client): Promise<LikesResponse> {
+    if (this.likeCount === 0) {
       throw new RootServerException(LikesError.NOTHING_TO_CLEAR, "There are no likes to clear.");
     }
 
-    this.likes = { count: 0, lastGivenAt: 0 };
-    this.broadcastChanged({ likes: this.likes }, "all", client);
-    return { likes: this.likes };
+    this.likeCount = 0;
+    this.lastLikedAt = 0;
+
+    this.broadcastLikesChanged(this.currentLikes(), "all", client);
+    return this.currentLikes();
+  }
+
+  private currentLikes(): LikesResponse {
+    return { count: this.likeCount, lastLikedAt: this.lastLikedAt };
   }
 }
 

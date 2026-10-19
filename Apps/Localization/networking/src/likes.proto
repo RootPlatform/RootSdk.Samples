@@ -7,40 +7,29 @@ enum LikesError {
   LIKES_ERROR_NOTHING_TO_CLEAR = 1;
 }
 
-message Likes {
+message GetLikesRequest {
+}
+
+message AddLikeRequest {
+}
+
+message ClearLikesRequest {
+}
+
+message LikesResponse {
   int32 count = 1;
-  double last_given_at = 2;
-}
-
-message LikesGetRequest {
-}
-
-message LikesGetResponse {
-  Likes likes = 1;
-}
-
-message LikesGiveRequest {
-}
-
-message LikesGiveResponse {
-  Likes likes = 1;
-}
-
-message LikesClearRequest {
-}
-
-message LikesClearResponse {
-  Likes likes = 1;
+  double last_liked_at = 2;
 }
 
 message LikesChangedEvent {
-  Likes likes = 1;
+  int32 count = 1;
+  double last_liked_at = 2;
 }
 
 service LikesService {
-  rpc Get(LikesGetRequest) returns (LikesGetResponse);
-  rpc Give(LikesGiveRequest) returns (LikesGiveResponse);
-  rpc Clear(LikesClearRequest) returns (LikesClearResponse);
+  rpc GetLikes(GetLikesRequest) returns (LikesResponse);
+  rpc AddLike(AddLikeRequest) returns (LikesResponse);
+  rpc ClearLikes(ClearLikesRequest) returns (LikesResponse);
 
-  rpc BroadcastChanged(LikesChangedEvent) returns (rootsdk.Void);
+  rpc BroadcastLikesChanged(LikesChangedEvent) returns (rootsdk.Void);
 }

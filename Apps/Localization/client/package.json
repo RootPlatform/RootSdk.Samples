@@ -16,8 +16,8 @@
     "vite-plugin-checker": "^0.8.0"
   },
   "scripts": {
-    "build": "npm run check-i18n && tsc && vite build",
-    "check-i18n": "node --experimental-strip-types --no-warnings scripts/check-i18n.mjs",
+    "build": "npm run check-translations && tsc && vite build",
+    "check-translations": "node --experimental-strip-types --no-warnings scripts/check-translations.mjs",
     "client": "vite"
   }
 }
