@@ -1,4 +1,4 @@
-const LANGUAGES = ["es", "pl"];
+const LANGUAGES = ["es", "fr", "pt", "de", "it", "pl", "tr"];
 const EXTRA_PLURAL_FORMS = { pl: ["few", "many"] };
 
 const placeholders = (text) => [...text.matchAll(/\{(\w+)\}/g)].map((match) => match[1]).sort().join(",");

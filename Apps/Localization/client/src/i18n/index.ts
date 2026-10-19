@@ -1,16 +1,21 @@
+import { de } from "./de";
 import { en } from "./en";
 import { es } from "./es";
+import { fr } from "./fr";
+import { it } from "./it";
 import { pl } from "./pl";
+import { pt } from "./pt";
+import { tr } from "./tr";
 import type { MessageKey, Messages } from "./types";
 
-export const LANGUAGES = ["en", "es", "pl"] as const;
+export const LANGUAGES = ["en", "es", "fr", "pt", "de", "it", "pl", "tr"] as const;
 export type Language = (typeof LANGUAGES)[number];
 
 type PluralBase<Key> = Key extends `${infer Base}_other` ? Base : never;
 type PluralKey = PluralBase<MessageKey>;
 type Values = Record<string, string | number>;
 
-const TABLES: Record<Language, Messages> = { en, es, pl };
+const TABLES: Record<Language, Messages> = { en, es, fr, pt, de, it, pl, tr };
 
 function toLanguage(value: string | null | undefined): Language | null {
   const base = (value ?? "").trim().toLowerCase().split(/[-_]/)[0];

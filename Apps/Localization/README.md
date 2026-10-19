@@ -1,6 +1,6 @@
 # Localization
 
-A shared like counter whose screens follow the member's Root language. It ships in English, Spanish and Polish.
+A shared like counter whose screens follow the member's Root language. It ships in every language Root supports: English, Spanish, French, Portuguese, German, Italian, Polish and Turkish.
 
 ## What it shows
 
@@ -22,13 +22,13 @@ npm run build
 cd client && npm run client
 ```
 
-Add `?lang=es` or `?lang=pl` to the address to see another language.
+Add `?lang=` with a language code (`es`, `fr`, `pt`, `de`, `it`, `pl` or `tr`) to the address to see another language.
 
 To run against a community, put your app id in `root-manifest.json` and a `DEV_TOKEN` in `server/.env`, then `cd server && npm run server`.
 
 ## Add a language
 
-1. Copy `client/src/i18n/es.ts` to a new file named with the language code, for example `fr.ts`, and translate the values.
+1. Copy `client/src/i18n/es.ts` to a new file named with the language code, for example `nl.ts`, and translate the values. If the language needs plural forms other than `_one` and `_other`, add them to `EXTRA_PLURAL_FORMS` in `client/scripts/check-i18n.mjs`.
 2. Import it in `client/src/i18n/index.ts` and add the code to `LANGUAGES` and `TABLES`.
 3. Add the code to `LANGUAGES` in `client/scripts/check-i18n.mjs`.
 4. Run `npm run build`.
