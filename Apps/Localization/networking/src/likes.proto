@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+import "rootsdk/types.proto";
+
+enum LikesError {
+  LIKES_ERROR_UNSPECIFIED = 0;
+  LIKES_ERROR_NOTHING_TO_CLEAR = 1;
+}
+
+message GetLikesRequest {
+}
+
+message AddLikeRequest {
+}
+
+message ClearLikesRequest {
+}
+
+message LikesResponse {
+  int32 count = 1;
+  double last_liked_at = 2;
+}
+
+message LikesChangedEvent {
+  int32 count = 1;
+  double last_liked_at = 2;
+}
+
+service LikesService {
+  rpc GetLikes(GetLikesRequest) returns (LikesResponse);
+  rpc AddLike(AddLikeRequest) returns (LikesResponse);
+  rpc ClearLikes(ClearLikesRequest) returns (LikesResponse);
+
+  rpc BroadcastLikesChanged(LikesChangedEvent) returns (rootsdk.Void);
+}

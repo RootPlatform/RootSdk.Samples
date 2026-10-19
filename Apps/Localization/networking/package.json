@@ -1,0 +1,6 @@
+{
+  "name": "@localization/networking",
+  "scripts": {
+    "build": "rootsdk build proto"
+  }
+}
