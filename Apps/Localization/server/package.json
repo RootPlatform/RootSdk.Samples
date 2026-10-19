@@ -1,0 +1,12 @@
+{
+  "name": "@localization/server",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "@types/node": "^22.10.2"
+  },
+  "scripts": {
+    "build": "tsc",
+    "server": "rootsdk start devhost --project-folder=../"
+  }
+}
