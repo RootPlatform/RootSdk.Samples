@@ -1,6 +1,6 @@
 # Localization
 
-A shared like counter whose screens follow the member's Root language. It ships in every language Root supports: English, Spanish, French, Portuguese, German, Italian, Polish and Turkish.
+A shared like counter whose screens follow the member's Root language. It ships in every language Root supports: English, Spanish, French, Portuguese, German, Italian, Polish, Turkish, Indonesian and Dutch.
 
 ## Read the code in this order
 
@@ -22,7 +22,7 @@ You don't need these to translate your screens.
 
 ## Plurals
 
-Most languages need two forms of a counted phrase: `likes.count_one` and `likes.count_other`. Polish needs four: `_one` (1), `_few` (2 to 4, 22 to 24, ...), `_many` (5 to 21, ...) and `_other`. Look at `pl.ts` to see them.
+Most languages need two forms of a counted phrase: `likes.count_one` and `likes.count_other`. Polish needs four: `_one` (1), `_few` (2 to 4, 22 to 24, ...), `_many` (5 to 21, ...) and `_other`. Look at `pl.ts` to see them. Indonesian uses the same words for every number, so `id.ts` has only `_other`.
 
 ## Run it
 
@@ -32,15 +32,15 @@ npm run build
 cd client && npm run client
 ```
 
-Add `?lang=` with a language code (`es`, `fr`, `pt`, `de`, `it`, `pl` or `tr`) to the address to see another language.
+Add `?lang=` with a language code (`es`, `fr`, `pt`, `de`, `it`, `pl`, `tr`, `id` or `nl`) to the address to see another language.
 
 To run against a community, put your app id in `root-manifest.json` and a `DEV_TOKEN` in `server/.env`, then `cd server && npm run server`.
 
 ## Add a language
 
-1. Copy `client/src/translations/es.ts` to a new file named with the language code, for example `nl.ts`, and translate the text.
+1. Copy `client/src/translations/es.ts` to a new file named with the language code, for example `ja.ts`, and translate the text.
 2. In `translate.ts`, import it and add it to `translations`.
-3. In `check-translations.mjs`, add the code to `LANGUAGES`. If the language needs plural forms other than `_one` and `_other`, add them to `EXTRA_PLURAL_FORMS`.
+3. In `check-translations.mjs`, add the code to `LANGUAGES`. If the language needs plural forms other than `_one` and `_other`, add them to `EXTRA_PLURAL_FORMS`. If it has only `_other`, add it to `ONLY_OTHER_FORM`.
 4. Run `npm run build`.
 
 See [Localization](https://docs.rootapp.com/docs/app-docs/develop/client/localization) in the developer documentation.

@@ -1,5 +1,6 @@
-const LANGUAGES = ["es", "fr", "pt", "de", "it", "pl", "tr"];
+const LANGUAGES = ["es", "fr", "pt", "de", "it", "pl", "tr", "id", "nl"];
 const EXTRA_PLURAL_FORMS = { pl: ["few", "many"] };
+const ONLY_OTHER_FORM = ["id"];
 
 function placeholdersIn(text) {
   return [...text.matchAll(/\{(\w+)\}/g)].map((match) => match[1]).sort().join(", ");
@@ -11,7 +12,7 @@ const problems = [];
 for (const language of LANGUAGES) {
   const translation = (await import(`../src/translations/${language}.ts`))[language];
 
-  const expectedKeys = Object.keys(en);
+  const expectedKeys = Object.keys(en).filter((key) => !(ONLY_OTHER_FORM.includes(language) && key.endsWith("_one")));
   for (const pluralKey of Object.keys(en).filter((key) => key.endsWith("_other"))) {
     for (const pluralForm of EXTRA_PLURAL_FORMS[language] ?? []) {
       expectedKeys.push(pluralKey.replace("_other", `_${pluralForm}`));

@@ -2,12 +2,14 @@ import { de } from "./de";
 import { en } from "./en";
 import { es } from "./es";
 import { fr } from "./fr";
+import { id } from "./id";
 import { it } from "./it";
+import { nl } from "./nl";
 import { pl } from "./pl";
 import { pt } from "./pt";
 import { tr } from "./tr";
 
-const translations: Record<string, Record<string, string>> = { en, es, fr, pt, de, it, pl, tr };
+const translations: Record<string, Record<string, string>> = { en, es, fr, pt, de, it, pl, tr, id, nl };
 
 function chooseLanguage(): string {
   const languageFromAddress = new URLSearchParams(window.location.search).get("lang");
