@@ -8,10 +8,10 @@
     "node": ">=22"
   },
   "dependencies": {
-    "@rootsdk/server-app": "^0.21.3"
+    "@rootsdk/server-app": "^0.22.0"
   },
   "devDependencies": {
-    "@rootsdk/dev-tools": "^0.21.3",
+    "@rootsdk/dev-tools": "^0.22.0",
     "typescript": "^5.8.2"
   },
   "scripts": {
